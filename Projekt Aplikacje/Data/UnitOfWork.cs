@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekt_Aplikacje.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,34 +11,8 @@ namespace Todo.Data
     public class UnitOfWork : IUnitOfWork
     {
         private DataContext _context;
-        private ITaskRepository _task;
-        private IGroupRepository _group;
         private IAuthRepository _auth;
 
-        public ITaskRepository Task { 
-            get
-            {
-                if (_task == null)
-                {
-                    _task = new TaskRepository(_context);
-                }
-
-                return _task;
-            } 
-        }
-
-        public IGroupRepository Group
-        {
-            get
-            {
-                if (_group == null)
-                {
-                    _group = new GroupRepository(_context);
-                }
-
-                return _group;
-            }
-        }
 
         public IAuthRepository Auth
         {

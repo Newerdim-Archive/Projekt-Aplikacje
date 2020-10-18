@@ -9,9 +9,7 @@ namespace Todo.Data
 {
     public interface IUnitOfWork
     {
-        ITaskRepository Task { get; }
         IAuthRepository Auth { get; }
-        IGroupRepository Group { get; }
 
         void Save();
         Task SaveAsync();
