@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Projekt_Aplikacje.Dtos.Data;
+using Projekt_Aplikacje.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +16,13 @@ namespace Projekt_Aplikacje.Helper
         {
             // Dto To Domain
             CreateMap<UserForRegistrationDto, User>();
+            CreateMap<UserForLoginDto, User>();
+
+            CreateMap<DataForAddDto, DataModel>();
+            CreateMap<DataForUpdateDto, DataModel>();
 
             // Domain To Dto
+            CreateMap<DataModel, DataDto>();
 
         }
     }
