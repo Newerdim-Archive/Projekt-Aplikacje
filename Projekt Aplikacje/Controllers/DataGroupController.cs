@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,19 +25,25 @@ namespace Projekt_Aplikacje.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _uow.DataGroup.GetAllAsync());
+            return Ok(await _uow.DataGroup.GetAllWithoutDataAsync());
         }
 
         [HttpGet("{groupName}")]
         public async Task<IActionResult> GetByName(string name)
         {
-            return Ok(await _uow.DataGroup.GetByNameAsync(name));
+            return Ok(await _uow.DataGroup.GetByNameWithUserDataAsync(name, GetUserId()));
         }
 
         [HttpGet("{groupId}")]
         public async Task<IActionResult> GetById(int id)
         {
-            return Ok(await _uow.DataGroup.GetAsync(id));
+            return Ok(await _uow.DataGroup.GetByIdWithUserDataAsync(id, GetUserId()));
+        }
+
+        private int GetUserId()
+        {
+            return int.TryParse(User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)?.Value,
+                out var tempVal) ? tempVal : 0;
         }
     }
 }
