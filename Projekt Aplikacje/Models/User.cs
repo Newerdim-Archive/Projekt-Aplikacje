@@ -23,8 +23,6 @@ namespace Todo.Models
 
         public byte[] PasswordHash { get; set; }
 
-        public ICollection<DataGroup> DataGroups { get; set; }
-
         public ICollection<DataModel> Datas { get; set; }
     }
 }
