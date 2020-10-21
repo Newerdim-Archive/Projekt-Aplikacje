@@ -28,15 +28,21 @@ namespace Projekt_Aplikacje.Controllers
             return Ok(await _uow.DataGroup.GetAllWithoutDataAsync());
         }
 
-        [HttpGet("{groupName}")]
-        public async Task<IActionResult> GetByName(string name)
+        [HttpGet("{groupName}/{howMany?}")]
+        public async Task<IActionResult> GetByName(string name, int? howMany = null)
         {
+            if (howMany.HasValue)
+                return Ok(await _uow.DataGroup.GetByNameWithUserDataAsync(name, howMany.Value, GetUserId()));
+
             return Ok(await _uow.DataGroup.GetByNameWithUserDataAsync(name, GetUserId()));
         }
 
-        [HttpGet("{groupId}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("{groupId}/{howMany?}")]
+        public async Task<IActionResult> GetById(int id, int? howMany = null)
         {
+            if (howMany.HasValue)
+                return Ok(await _uow.DataGroup.GetByIdWithUserDataAsync(id, howMany.Value, GetUserId()));
+
             return Ok(await _uow.DataGroup.GetByIdWithUserDataAsync(id, GetUserId()));
         }
 
