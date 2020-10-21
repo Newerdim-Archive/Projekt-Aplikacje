@@ -9,7 +9,7 @@ namespace Projekt_Aplikacje.Data.Interfaces
 {
     public interface IDataRepository : IRepository<DataModel>
     {
-        Task<DataModel> GetByIdFromUser(int id);
-        Task<ICollection<DataModel>> GetAllFromUser();
+        Task<DataModel> GetByIdFromUser(int id, int userId);
+        Task<ICollection<DataModel>> GetAllFromUser(int userId);
     }
 }

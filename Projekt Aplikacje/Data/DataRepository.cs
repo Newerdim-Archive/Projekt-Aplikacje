@@ -1,4 +1,5 @@
-﻿using Projekt_Aplikacje.Data.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Projekt_Aplikacje.Data.Interfaces;
 using Projekt_Aplikacje.Models;
 using System;
 using System.Collections.Generic;
@@ -18,14 +19,18 @@ namespace Projekt_Aplikacje.Data
             _context = context;
         }
 
-        public Task<ICollection<DataModel>> GetAllFromUser()
+        public async Task<ICollection<DataModel>> GetAllFromUser(int userId)
         {
-            throw new NotImplementedException();
+            return await _context.Datas
+                .Where(d => d.UserId == userId)
+                .ToListAsync();
         }
 
-        public Task<DataModel> GetByIdFromUser(int id)
+        public async Task<DataModel> GetByIdFromUser(int id, int userId)
         {
-            throw new NotImplementedException();
+            return await _context.Datas
+                .Where(d => d.UserId == userId)
+                .FirstOrDefaultAsync(d => d.Id == id);
         }
     }
 }
