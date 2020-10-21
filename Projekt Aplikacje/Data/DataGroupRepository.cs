@@ -41,6 +41,24 @@ namespace Projekt_Aplikacje.Data
                 .FirstOrDefaultAsync();
         }
 
+        public async Task<DataGroup> GetByIdWithUserDataAsync(int id, int howMany, int userId)
+        {
+            return await _context.DataGroups
+                .Include(g => g.Datas)
+                .Where(g => g.Id == id)
+                .Select(g => new DataGroup
+                {
+                    Id = g.Id,
+                    Name = g.Name,
+                    Unit = g.Unit,
+                    Datas = g.Datas
+                        .Where(d => d.UserId == userId)
+                        .Take(howMany)
+                        .ToList()
+                })
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<DataGroup> GetByNameWithUserDataAsync(string name, int userId)
         {
             return await _context.DataGroups
@@ -53,6 +71,24 @@ namespace Projekt_Aplikacje.Data
                     Unit = g.Unit,
                     Datas = g.Datas
                         .Where(d => d.UserId == userId)
+                        .ToList()
+                })
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<DataGroup> GetByNameWithUserDataAsync(string name, int howMany, int userId)
+        {
+            return await _context.DataGroups
+                .Include(g => g.Datas)
+                .Where(g => g.Name == name)
+                .Select(g => new DataGroup
+                {
+                    Id = g.Id,
+                    Name = g.Name,
+                    Unit = g.Unit,
+                    Datas = g.Datas
+                        .Where(d => d.UserId == userId)
+                        .Take(howMany)
                         .ToList()
                 })
                 .FirstOrDefaultAsync();
