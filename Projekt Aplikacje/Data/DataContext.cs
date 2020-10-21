@@ -23,5 +23,7 @@ namespace Projekt_Aplikacje.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Gender> Genders { get; set; }
+        public DbSet<DataGroup> DataGroups { get; set; }
+        public DbSet<DataModel> Datas { get; set; }
     }
 }
