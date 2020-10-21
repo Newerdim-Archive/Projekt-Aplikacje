@@ -17,5 +17,15 @@ namespace Projekt_Aplikacje.Data
         {
             _context = context;
         }
+
+        public Task<ICollection<DataModel>> GetAllFromUser()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<DataModel> GetByIdFromUser(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

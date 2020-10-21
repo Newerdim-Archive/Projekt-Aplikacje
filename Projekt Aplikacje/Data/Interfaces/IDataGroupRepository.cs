@@ -9,8 +9,8 @@ namespace Projekt_Aplikacje.Data.Interfaces
 {
     public interface IDataGroupRepository : IRepository<DataGroup>
     {
-        Task<DataGroup> GetByNameFromUserAsync(string name);
-        Task<DataGroup> GetByIdFromUserAsync(int id);
-        Task<ICollection<DataGroup>> GetAllFromUserAsync();
+        Task<DataGroup> GetByNameWithUserDataAsync(string name, int userId);
+        Task<DataGroup> GetByIdWithUserDataAsync(int id, int userId);
+        Task<ICollection<DataGroup>> GetAllWithoutDataAsync();
     }
 }

@@ -19,24 +19,43 @@ namespace Projekt_Aplikacje.Data
             _context = context;
         }
 
-        public async Task<ICollection<DataGroup>> GetAllFromUserAsync(int userId)
+        public async Task<ICollection<DataGroup>> GetAllWithoutDataAsync()
         {
-            return await _context.DataGroups
-                .Where(g => g.UserId == userId)
-                .ToListAsync();
+            return await _context.DataGroups.ToListAsync();
         }
 
-        public Task<DataGroup> GetByIdFromUserAsync(int id, int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<DataGroup> GetByNameFromUserAsync(string name)
+        public async Task<DataGroup> GetByIdWithUserDataAsync(int id, int userId)
         {
             return await _context.DataGroups
                 .Include(g => g.Datas)
-                .Where(g => g)
-                .FirstOrDefaultAsync(g => g.Name == name);
+                .Where(g => g.Id == id)
+                .Select(g => new DataGroup
+                {
+                    Id = g.Id,
+                    Name = g.Name,
+                    Unit = g.Unit,
+                    Datas = g.Datas
+                        .Where(d => d.UserId == userId)
+                        .ToList()
+                })
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<DataGroup> GetByNameWithUserDataAsync(string name, int userId)
+        {
+            return await _context.DataGroups
+                .Include(g => g.Datas)
+                .Where(g => g.Name == name)
+                .Select(g => new DataGroup
+                {
+                    Id = g.Id,
+                    Name = g.Name,
+                    Unit = g.Unit,
+                    Datas = g.Datas
+                        .Where(d => d.UserId == userId)
+                        .ToList()
+                })
+                .FirstOrDefaultAsync();
         }
     }
 }
