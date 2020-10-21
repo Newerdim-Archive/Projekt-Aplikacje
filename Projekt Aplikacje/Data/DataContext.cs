@@ -16,8 +16,17 @@ namespace Projekt_Aplikacje.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Gender>().HasData(
-                new Gender { Id = 1, Name = "Mężczyzna" },
-                new Gender { Id = 2, Name = "Kobieta" }
+                    new Gender { Id = 1, Name = "Mężczyzna" },
+                    new Gender { Id = 2, Name = "Kobieta" }
+                );
+
+            modelBuilder.Entity<DataGroup>().HasData(
+                    new DataGroup { Id = 1, Name = "Waga", Unit = "kg", Datas = new List<DataModel>() },
+                    new DataGroup { Id = 2, Name = "Kalorie", Unit = "kcal", Datas = new List<DataModel>() },
+                    new DataGroup { Id = 3, Name = "Sen", Unit = "h", Datas = new List<DataModel>() },
+                    new DataGroup { Id = 4, Name = "Woda", Unit = "ml", Datas = new List<DataModel>() },
+                    new DataGroup { Id = 5, Name = "Trening", Unit = "h", Datas = new List<DataModel>() },
+                    new DataGroup { Id = 6, Name = "Samopoczucie", Unit = "", Datas = new List<DataModel>() }
                 );
         }
 
