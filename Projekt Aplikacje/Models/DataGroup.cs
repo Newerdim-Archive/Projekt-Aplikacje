@@ -14,10 +14,6 @@ namespace Projekt_Aplikacje.Models
 
         public string Unit { get; set; }
 
-        public List<DataModel> Datas { get; set; }
-
-        public int UserId { get; set; }
-
-        public User User { get; set; }
+        public ICollection<DataModel> Datas { get; set; }
     }
 }
