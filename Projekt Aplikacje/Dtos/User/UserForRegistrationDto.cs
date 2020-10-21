@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projekt_Aplikacje.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,5 +18,8 @@ namespace Todo.Dto
 
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        public Gender Gender { get; set; }
     }
 }
