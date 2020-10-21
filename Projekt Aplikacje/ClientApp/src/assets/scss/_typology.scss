@@ -1,0 +1,54 @@
+/* #region Variables */
+
+$sizes: (
+    smaller: .75em,
+    small: .875em,
+    normal: 1em,
+    big: 1.2em,
+    bigger: 1.5em);
+/* #endregion */
+
+/* #region Functions */
+@function font-size($name: normal) {
+
+    @if map-has-key($sizes, $name) {
+        @return map-get($sizes, $name);
+    }
+
+    @return null;
+}
+
+/* #endregion */
+
+
+@mixin font-size($name: normal) {
+    font-size: font-size($name);
+}
+
+
+
+@each $name, $value in $sizes {
+    .text-#{$name} {
+        font-size: $value;
+    }
+}
+
+.text-strike {
+    text-decoration: line-through;
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.text-lighter {
+    font-weight: lighter;
+}
+
+.text-italic {
+    font-style: italic;
+}

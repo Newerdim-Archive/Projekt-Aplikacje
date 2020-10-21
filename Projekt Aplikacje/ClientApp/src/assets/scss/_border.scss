@@ -1,0 +1,11 @@
+@each $color, $tones in $palettes {
+    .border-#{$color} {
+        border: 1px solid color($color);
+    }
+
+    @each $tone, $value in $tones {
+        .border-#{$color}-#{$tone} {
+            border: 1px solid color($color, $tone);
+        }
+    }
+}

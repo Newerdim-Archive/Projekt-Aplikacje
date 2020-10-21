@@ -1,0 +1,3 @@
+@mixin shadow-center($color: color(light, darken), $opacity: .6) {
+    box-shadow: 0 0 0 3px rgba($color, $opacity);
+}

@@ -1,0 +1,18 @@
+$border-radius: 1.2em;
+$small-border-radius: .2em;
+$strong-border-radius: 50%;
+
+.rounded {
+    border-radius: $border-radius;
+    overflow: hidden;
+}
+
+.strong-rounded {
+    border-radius: $strong-border-radius;
+    overflow: hidden;
+}
+
+.small-rounded {
+    border-radius: $small-border-radius;
+    overflow: hidden;
+}

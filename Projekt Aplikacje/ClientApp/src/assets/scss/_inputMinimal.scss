@@ -1,0 +1,140 @@
+form {
+  .form-group-minimal {
+    @include margin-yx(3, 0);
+
+    &:first-child {
+      @include margin-yx(2, 1);
+    }
+  }
+}
+
+.form-group-minimal {
+  position: relative;
+  width: 100%;
+
+  @include flex(st, s, c);
+
+  &.horizontal {
+    @include flex(st, s, r);
+  }
+
+  &>* {
+    width: 100%;
+  }
+
+  label {
+    position: absolute;
+    top: - font-size(small);
+    left: 0;
+    display: block;
+    opacity: .7;
+    transition: all $transition-duration;
+    z-index: 1;
+    pointer-events: none;
+
+    @include font-size(smaller);
+    @include padding-all(0);
+    @include margin-yx(2, 0);
+
+    &~input {
+      margin-top: space(1);
+    }
+  }
+
+  .form-control {
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid color(dark, lighten);
+    font-size: font-size();
+    font-family: inherit;
+    line-height: 1.2;
+    width: 100%;
+    transition: border-bottom $transition-duration;
+    background-color: transparent;
+    color: inherit;
+
+    @include padding-yx(1, 0);
+    @include margin-yx(2, 0);
+
+    &.border-left {
+      border-left: 1px solid rgba(color(dark, lighten), .4);
+    }
+
+    &:focus,
+    &:active {
+      outline: none;
+      border-bottom: 1px solid color(primary);
+      z-index: 1;
+
+      &~label {
+        top: - font-size();
+
+        @include padding-yx(0, 0);
+        @include font-size(smaller);
+      }
+    }
+
+    &.ng-invalid.ng-touched {
+      border-bottom: 1px solid color(danger);
+    }
+
+    &.active {
+      &~label {
+        top: - font-size();
+
+        @include padding-yx(0, 0);
+        @include font-size(smaller);
+      }
+    }
+
+    &~label {
+      top: 0;
+
+      @include padding-yx(1, 0);
+      @include font-size();
+    }
+  }
+
+  .validation-error {
+    @include font-size(small);
+
+    color: color(danger, light);
+  }
+
+  select {
+    cursor: pointer;
+
+    padding-left: 0 !important; // Line up with label
+
+    &:focus~label,
+    &.active~label,
+    &~label {
+      @include padding-yx(0, 1);
+    }
+
+    option {
+      @include bg-text-color(light);
+    }
+
+    &.dark option {
+      @include bg-text-color(dark);
+    }
+  }
+
+  textarea {
+    resize: none;
+  }
+
+}
+
+.search-bar {
+  flex: 1;
+  max-width: 400px;
+  color: color(dark);
+
+  @include margin-yx(0, 5);
+
+  @include for-tablet-down {
+    display: none;
+  }
+}

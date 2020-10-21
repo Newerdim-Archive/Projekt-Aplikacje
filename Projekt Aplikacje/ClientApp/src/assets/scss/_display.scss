@@ -1,0 +1,7 @@
+$display-types: (block, inline, inline-block, none, flex, grid, table);
+
+@each $type in $display-types {
+  .d-#{$type} {
+    display: $type;
+  }
+}

@@ -1,0 +1,122 @@
+// Flexbox
+@mixin flexbox {
+	display: flex;
+}
+
+// Flexbox Inline
+@mixin inline-flex {
+	display: inline-flex;
+}
+
+// Flexbox Direction
+// Values: r (row) | rr (row-reverse) | c (column) | cr (column-reverse)
+// Default: row
+@mixin flex-direction ($value: r) {
+  @if $value == rr {
+    flex-direction: row-reverse;
+  } @else if $value == c {
+    flex-direction: column;
+  } @else if $value == cr {
+    flex-direction: column-reverse;
+  } @else {
+    flex-direction: row;
+  }
+}
+
+// Flexbox Align Items
+// Values: st (stretch) | s (flex-start) | e (flex-end) | c (center) | b (baseline)
+// Default: streatch
+@mixin flex-align ($value: st) {
+  @if $value == s {
+    align-items: flex-start;
+  } @else if $value == e {
+    align-items: flex-end;
+  } @else if $value == c {
+    align-items: center;
+  } @else if $value == b {
+    align-items: baseline;
+  } @else {
+    align-items: stretch;
+  }
+}
+
+// Flexbox Self Align
+// Values: a (auto) | st (stretch) | s (flex-start) | e (flex-end) | c (center) | b (baseline)
+// Default: auto
+@mixin flex-self-align ($value: a) {
+  @if $value == st {
+    align-self: stretch;
+  } @else if $value == s {
+    align-self: flex-start;
+  } @else if $value == e {
+    align-self: flex-end;
+  } @else if $value == c {
+    align-self: center;
+  } @else if $value == b {
+    align-self: baseline;
+  } @else {
+    align-self: auto;
+  }
+}
+
+// Flexbox Justify Content
+// Values: s (flex-start) | e (flex-end) | c (center) | sb (space-between) | sa (space-around) | se (space-evenly)
+// Default: flex-start
+@mixin flex-justify ($value: s) {
+  @if $value == e {
+    justify-content: flex-end;
+  } @else if $value == c {
+    justify-content: center;
+  } @else if $value == sb {
+    justify-content: space-between;
+  } @else if $value == sa {
+    justify-content: space-around;
+  } @else if $value == se {
+    justify-content: space-evenly;
+  } @else {
+    justify-content: flex-start;
+  }
+}
+
+// Flexbox Wrap
+// Values: nw (nowrap) | w (wrap) | wr (wrap-reverse)
+// Default: nowrap
+@mixin flex-wrap ($value: nw) {
+  @if $value == w {
+    flex-wrap: wrap;
+  } @else if $value == wr {
+    flex-wrap: wrap-reverse;
+  } @else {
+    flex-wrap: nowrap;
+  }
+}
+
+// Flexbox Flow
+// Values: <flex-direction> | <flex-wrap>
+// flex-direction: r (row) | rr (row-reverse) | c (column) | cr (column-reverse)
+// flex-wrap: nw (nowrap) | w (wrap) | wr (wrap-reverse)
+// Default: row | nowrap
+@mixin flex-flow($direction: r, $wrap: nw) {
+  @include flex-direction($direction);
+  @include flex-wrap($wrap);
+}
+
+// Flexbox Center
+@mixin flex-center() {
+  @include flexbox();
+  @include flex-align(c);
+  @include flex-justify(c);
+}
+
+// Flexbox Align, Justify, Direction
+// Values <align-items> | <justify-content> | <flex-direction>
+// align-items: st (stretch) | s (flex-start) | e (flex-end) | c (center) | b (baseline)
+// jusify-conent: s (flex-start) | e (flex-end) | c (center) | sb (space-between) | sa (space-around) | se (space-evenly)
+// flex-direction: r (row) | rr (row-reverse) | c (column) | cr (column-reverse)
+// Default: stretch | flex-start | row
+@mixin flex($align: st, $justify: s, $direction: r) {
+  @include flexbox();
+  @include flex-align($align);
+  @include flex-justify($justify);
+  @include flex-direction($direction);
+}

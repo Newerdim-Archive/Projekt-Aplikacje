@@ -1,0 +1,91 @@
+form {
+  .form-group {
+    @include margin-yx(3, 0);
+  }
+}
+
+.form-group {
+  position: relative;
+  width: 100%;
+
+  @include flex(st, s, c);
+
+  &.horizontal {
+    @include flex-direction();
+  }
+
+  label {
+    display: inline-block;
+
+    @include padding-yx(1, 1);
+    @include flex(st, s, c);
+
+    .input-bar {
+      border: 1px solid color(dark, lighten);
+      background-color: color(light);
+
+      transition: all $transition-duration;
+
+      @include padding-yx(1, 2);
+      @include flex(c, sb, r);
+
+      &:focus-within {
+        border: 1px solid color(primary);
+      }
+
+      & > *:last-child {
+        margin-left: space(2);
+      }
+
+      .form-control {
+        font-size: font-size();
+        font-family: inherit;
+        line-height: 1.2;
+        width: 100%;
+        background-color: transparent;
+        color: inherit;
+        border: none;
+
+        &:focus,
+        &:active {
+          outline: none;
+        }
+
+        &::placeholder {
+          color: inherit;
+          text-transform: capitalize;
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+
+  .validation-error {
+    color: color(danger, light);
+    display: block;
+    @include font-size(small);
+  }
+
+  select {
+    cursor: pointer;
+    padding-left: 0 !important; // Line up with label
+
+    &:focus ~ label,
+    &.active ~ label,
+    & ~ label {
+      @include padding-yx(0, 1);
+    }
+
+    option {
+      @include bg-text-color(light);
+    }
+
+    &.dark option {
+      @include bg-text-color(dark);
+    }
+  }
+
+  textarea {
+    resize: none;
+  }
+}

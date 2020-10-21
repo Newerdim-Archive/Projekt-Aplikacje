@@ -1,0 +1,120 @@
+.dropdown {
+    position: relative;
+
+    // &:hover > .dropdown-content,
+    &:focus-within > .dropdown-content{
+        opacity: 1;
+    }
+
+    .dropdown-button {
+        @include flex-center();
+    }
+
+    &.left {
+        & > .dropdown-content {
+            width: 100%;
+            left: calc(-100% - #{space(1)});
+            top: 0;
+
+            @include margin-all(0);
+        }
+
+        & > .dropdown-button {
+            @include flex-flow(rr);
+
+            .arrow {
+                transform: rotate(90deg);
+                margin-right: space(2);
+            }
+        }
+    }
+
+    &.right {
+        & > .dropdown-content {
+            width: 100%;
+            right: calc(-100% - #{space(1)});
+            top: 0;
+
+            @include margin-all(0);
+        }
+
+        & > .dropdown-button {
+            .arrow {
+                transform: rotate(-90deg);
+            }
+        }
+    }
+
+    .dropdown-content {
+        opacity: 0;
+        transition: opacity $transition-duration;
+        margin-top: space(1);
+        z-index: 1;
+        position: absolute;
+        min-width: 100%;
+
+        @include flex(st, s, c);
+
+
+        .dropdown-items > a {
+            display: block;
+            
+            @include padding-yx(2, 3);
+
+            & ~ .dropdown {
+                margin-top: space(1);
+            }
+
+        }
+
+        & > .dropdown {
+            margin-top: space(1);
+        }
+    }
+
+    @each $color, $tons in $palettes {
+        &.#{$color} {
+            & > .dropdown-button {
+                @extend .btn;
+                @extend .btn-#{$color};
+
+                .arrow {
+                    border-top-color: text-color-by-lightness($color);
+                }
+            }
+
+            & > .dropdown-content > .dropdown-items > a {
+                @include bg-text-color($color);
+
+                &:hover {
+                    @include bg-text-color($color, dark);
+                }
+            }
+        }
+
+        &.border-#{$color} {
+            border: none;
+
+            & > .dropdown-button {
+                @extend .btn;
+                @extend .btn-outline-#{$color};
+
+                &:hover .arrow {
+                    border-top-color: text-color-by-lightness($color);
+                }
+
+                .arrow {
+                    border-top-color: color($color);
+                }
+            }
+
+            & > .dropdown-content > .dropdown-items > a {
+                @include bg-text-color($color);
+
+                &:hover {
+                    @include bg-text-color($color, dark);
+                }
+            }
+        }
+    }
+}

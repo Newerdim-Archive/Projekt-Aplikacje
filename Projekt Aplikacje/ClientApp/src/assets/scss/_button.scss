@@ -1,0 +1,153 @@
+.btn {
+  /* #region  Default Button */
+  border: none;
+  background-color: transparent;
+  font-size: 100%;
+  width: 100%;
+  color: inherit;
+
+  transition: all 0.3s;
+
+  @include flex-center();
+  @include padding-yx(2, 3);
+
+  &:focus,
+  &:active {
+    outline: none;
+    @include shadow-center(color(dark, light));
+  }
+
+  /* #endregion */
+
+  /* #region Classes */
+  @each $name, $tons in $palettes {
+    /* #region  Types */
+
+    /* #region  Normal */
+    &.btn-#{$name} {
+      @include bg-text-color($name);
+
+      &:hover {
+        @include bg-text-color($name, dark);
+      }
+
+      &:focus,
+      &:active {
+        outline: none;
+
+        @include shadow-center(color($name, light));
+      }
+
+      &.outline {
+        border: 1px solid color($name);
+      }
+
+      .arrow {
+        border-top-color: text-color-by-lightness($name);
+      }
+    }
+
+    /* #endregion */
+
+    /* #region Outline */
+    &.btn-outline-#{$name} {
+      color: color($name);
+      border: 1px solid color($name);
+
+      &:hover {
+        @include bg-text-color($name);
+      }
+
+      &:focus,
+      &:active {
+        outline: none;
+
+        @include shadow-center(color($name, light));
+      }
+
+      &.outline {
+        border: 1px solid color($name);
+      }
+
+      .arrow {
+        border-top-color: text-color-by-lightness($name);
+      }
+    }
+
+    /* #endregion */
+
+    /* #region  Link */
+    &.btn-link,
+    &.btn-link-#{$name} {
+      color: inherit;
+      border: none;
+      width: fit-content;
+      @include padding-yx(1, 1);
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:focus,
+      &:active {
+        outline: none;
+
+        @include shadow-center(color(dark, light));
+      }
+
+      &.outline {
+        border: 1px solid color(dark);
+      }
+
+      .arrow {
+        border-top-color: text-color-by-lightness(dark);
+        transition: border-top-color 10s; //$transition-duration;
+      }
+    }
+
+    &.btn-link-#{$name} {
+      color: color($name);
+      padding: 0;
+
+      &:focus,
+      &:active {
+        @include shadow-center(color($name, light));
+      }
+
+      &.outline {
+        border: 1px solid color($name);
+      }
+
+      .arrow {
+        border-top-color: text-color-by-lightness($name);
+      }
+    }
+
+    /* #endregion */
+  }
+
+  /* #endregion */
+
+  &.rounded {
+    border-radius: $border-radius;
+    @include padding-yx(2, 4);
+  }
+
+  .arrow {
+    width: 0;
+    height: 0;
+    border-left: font-size(smaller) / 2 solid transparent;
+    border-right: font-size(smaller) / 2 solid transparent;
+    border-top: font-size(smaller) solid color(dark);
+    margin-left: space(2);
+  }
+
+  /* #endregion */
+}
+
+// Btn container
+.btn-group {
+  .btn {
+    @include margin-all(1);
+  }
+}

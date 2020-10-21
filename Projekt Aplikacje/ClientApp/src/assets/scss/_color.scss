@@ -1,0 +1,171 @@
+/* #region  Variables */
+$primary: #F55D3E;
+$secondary: #122EE2;
+$accent: #EABB1F;
+$dark: #333;
+$light: #FFF;
+$danger: #FF0000;
+$success: #00FF00;
+
+$shadow: rgba(0, 0, 0, .2);
+
+$saturation: 12%;
+$strongSaturation: $saturation * 5;
+
+/* #endregion */
+
+/* #region  Pallettes */
+$palettes: (
+    primary: (
+        base: $primary,
+        light: lighten($primary, $saturation),
+        lighten: lighten($primary, $strongSaturation),
+        dark: darken($primary, $saturation),
+        darken: darken($primary, $strongSaturation),
+    ),
+    secondary: (
+        base: $secondary,
+        light: lighten($secondary, $saturation),
+        lighten: lighten($secondary, $strongSaturation),
+        dark: darken($secondary, $saturation),
+        darken: darken($secondary, $strongSaturation),
+    ),
+    accent: (
+        base: $accent,
+        light: lighten($accent, $saturation),
+        lighten: lighten($accent, $strongSaturation),
+        dark: darken($accent, $saturation),
+        darken: darken($accent, $strongSaturation),
+    ),
+    dark: (
+        base: $dark,
+        light: lighten($dark, $saturation),
+        lighten: lighten($dark, $strongSaturation),
+        dark: darken($dark, $saturation),
+        darken: darken($dark, $strongSaturation),
+    ),
+    light: (
+        base: $light,
+        light: lighten($light, $saturation),
+        lighten: lighten($light, $strongSaturation),
+        // dark: darken($light, $saturation),
+        dark: darken($light, 4%),
+        darken: darken($light, $strongSaturation),
+    ),
+    danger: (
+        base: $danger,
+        light: lighten($danger, $saturation),
+        lighten: lighten($danger, $strongSaturation),
+        dark: darken($danger, $saturation),
+        darken: darken($danger, $strongSaturation),
+    ),
+    success: (
+        base: $success,
+        light: lighten($success, $saturation),
+        lighten: lighten($success, $strongSaturation),
+        dark: darken($success, $saturation),
+        darken: darken($success, $strongSaturation),
+    ),
+);
+/* #endregion */
+
+/* #region  Functions */
+@function color($color, $tone: base) {
+
+    @if map-has-key($palettes, $color) {
+        $color: map-get($palettes, $color);
+
+        @if map-has-key($color, $tone) {
+            $tone: map-get($color, $tone);
+            @return $tone;
+        }
+
+        @warn "unknown tone `#{$tone}` in color";
+        @return null;
+    }
+
+    @warn "unknown color `#{$color}` in palette";
+    @return null;
+}
+
+@function text-color-by-lightness($color, $tone: base) {
+
+    $bgColor: color($color, $tone);
+
+    @if($bgColor != null) {
+        @return if(lightness($bgColor) > 65, $dark, $light);
+    }
+
+    @return null;
+}
+
+@function tint($color, $percentage) {
+    @return mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+    @return mix(black, $color, $percentage);
+}
+
+/* #endregion */
+
+/* #region  Mixins */
+@mixin bg-text-color($color, $tone: base) {
+    $bgColor: color($color, $tone);
+
+    background-color: color($color, $tone);
+
+    @if($bgColor !=null) {
+        color: if(lightness($bgColor) > 65, $dark, $light);
+    }
+}
+
+@mixin text-color-by-lightness($color, $tone: base) {
+    $bgColor: color($color, $tone);
+
+    @if($bgColor !=null) {
+        color: if(lightness($bgColor) > 65, $dark, $light);
+    }
+}
+
+/* #endregion */
+
+/* #region  Classes */
+
+// /* #region Background */
+// @each $color, $tones in $palettes {
+//     .bg-#{$color} {
+//         background-color: color($color) !important;
+//     }
+
+//     // Generete class with color and tone e.g bg-primary-base
+//     @each $name,
+//     $value in $tones {
+//         .bg-#{$color}-#{$name} {
+//             background-color: color($color, $name) !important;
+//         }
+//     }
+// }
+
+
+// /* #endregion */
+
+// /* #region Text */
+// @each $color,
+// $tones in $palettes {
+//     .text-#{$color} {
+//         color: color($color) !important;
+//     }
+
+//     // Generete class with color and tone e.g bg-primary-base
+//     @each $name,
+//     $value in $tones {
+//         .text-#{$color}-#{$name} {
+//             color: color($color, $name) !important;
+//         }
+//     }
+// }
+
+// /* #endregion */
+
+/* #endregion */

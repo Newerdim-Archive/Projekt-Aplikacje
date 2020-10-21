@@ -1,0 +1,139 @@
+/* #region Variables */
+$spacer: 1em;
+
+$values: (
+    0: 0,
+    1: .25 * $spacer,
+    2: .5 * $spacer,
+    3: 1 * $spacer,
+    4: 1.5 * $spacer,
+    5: 3 * $spacer,
+    auto: auto);
+/* #endregion */
+
+/* #region Functions */
+@function space($number) {
+
+    @if map-has-key($values, $number) {
+        @return map-get($values, $number);
+    }
+
+    @return null;
+}
+
+/* #endregion */
+
+/* #region Mixins */
+@mixin padding($top, $right, $bottom, $left) {
+    padding:  space($top) space($right) space($bottom) space($left);
+}
+
+@mixin padding-yx($y, $x) {
+    padding: space($y) space($x);
+}
+
+@mixin padding-all($number) {
+    padding: space($number);
+}
+
+@mixin margin($top, $right, $bottom, $left) {
+    margin:  space($top) space($right) space($bottom) space($left);
+}
+
+@mixin margin-yx($y, $x) {
+    margin: space($y) space($x);
+}
+
+@mixin margin-all($number) {
+    margin: space($number);
+}
+
+/* #endregion */
+
+// @each $key, $value in $values {
+//     .m-#{$key} {
+//         margin: $value !important;
+//     }
+// }
+
+// @each $key, $value in $values {
+//     .mx-#{$key} {
+//         margin-left: $value !important;
+//         margin-right: $value !important;
+//     }
+// }
+
+// @each $key, $value in $values {
+//     .my-#{$key} {
+//       margin-top: $value !important;
+//       margin-bottom: $value !important;
+//     }
+// }
+
+// @each $key, $value in $values {
+//     .mt-#{$key} {
+//         margin-top: $value !important;
+//     }
+// }
+
+// @each $key, $value in $values {
+//     .mb-#{$key} {
+//         margin-bottom: $value !important;
+//     }
+// }
+
+// @each $key, $value in $values {
+//     .ml-#{$key} {
+//         margin-left: $value !important;
+//     }
+// }
+
+// @each $key, $value in $values {
+//     .mr-#{$key} {
+//         margin-right: $value !important;
+//     }
+// }
+
+// @each $key, $value in $values {
+//     .p-#{$key} {
+//         padding: $value !important;
+//     }
+// }
+
+// @each $key, $value in $values {
+//     .px-#{$key} {
+//         padding-left: $value !important;
+//         padding-right: $value !important;
+//     }
+// }
+
+// @each $key, $value in $values {
+//     .py-#{$key} {
+//         padding-top: $value !important;
+//         padding-bottom: $value !important;
+//     }
+// }
+
+// @each $key, $value in $values {
+//     .pt-#{$key} {
+//         padding-top: $value !important;
+//     }
+// }
+
+// @each $key, $value in $values {
+//     .pb-#{$key} {
+//       padding-bottom: $value !important;
+//     }
+// }
+
+// @each $key, $value in $values {
+//     .pl-#{$key} {
+//       padding-left: $value !important;
+//     }
+// }
+
+// @each $key, $value in $values {
+//     .pr-#{$key} {
+//       padding-right: $value !important;
+//     }
+// }

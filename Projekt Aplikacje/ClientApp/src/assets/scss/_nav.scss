@@ -1,0 +1,267 @@
+.navbar {
+  width: 100%;
+  z-index: 10;
+
+  @include bg-text-color(primary);
+  @include flex(c, sb, r);
+  @include padding-yx(2, 4);
+
+  @include for-tablet-up {
+    @include padding-yx(2, 5);
+  }
+
+  .open-nav,
+  .close-nav {
+    display: none;
+    margin-right: space(2);
+    padding: space(1);
+    cursor: pointer;
+
+    @include for-tablet-up {
+      display: none !important;
+    }
+
+    &.active {
+      @include flex-center();
+    }
+  }
+
+  .open-nav {
+    svg path {
+      stroke: color(light);
+    }
+  }
+
+  .close-nav {
+    svg path {
+      fill: color(light);
+    }
+  }
+
+  .brand {
+    @include flex-center();
+
+    a {
+      font-weight: bold;
+      font-size: font-size(big);
+      color: inherit;
+    }
+
+    @include for-phone-only {
+      margin-right: auto;
+    }
+  }
+
+  .navbar-static {
+    @include flex(c, c, r);
+
+    ul.nav {
+      list-style-type: none;
+
+      @include flex(c, s, r);
+      @include margin-all(0);
+      @include padding-all(0);
+
+      li {
+        a {
+          color: inherit;
+
+          @include flex(c, sb, r);
+          @include padding-yx(1, 1);
+          @include margin-yx(0, 2);
+
+          span {
+            display: none;
+          }
+
+          .icon path {
+            fill: color(light);
+          }
+
+          @include for-phone-up {
+            .icon {
+              margin-left: space(2);
+            }
+
+            span {
+              display: block;
+            }
+
+            &.search {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.navbar-collapse {
+  position: absolute;
+  left: -100%;
+  top: 0;
+  max-width: 100%;
+  min-width: 230px;
+  height: 100vh;
+  z-index: 10;
+  transition: left $transition-duration;
+
+  @include bg-text-color(light, dark);
+
+  &.active {
+    left: 0;
+
+    .curtain {
+      display: block;
+      opacity: 1;
+    }
+  }
+
+  @include for-tablet-up {
+    position: static;
+    z-index: 0;
+    height: 100%;
+
+    @include padding-yx(2, 5);
+
+    .nav-container {
+      background-color: transparent !important;
+    }
+
+    .curtain {
+      display: none;
+    }
+  }
+
+  .curtain {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200vw;
+    height: 100%;
+    background-color: rgba(color(dark), 0.3);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity $transition-duration;
+
+    // Remove padding from close-nav class
+    padding: 0 !important;
+  }
+
+  .nav-container {
+    width: 100%;
+    height: 100%;
+    background-color: color(light);
+
+    @include padding-yx(3, 4);
+    @include flex(c, sb, c);
+
+    @include for-tablet-up {
+      @include padding-all(0);
+    }
+  }
+
+  .close-nav {
+    margin-left: auto;
+
+    @include padding-all(2);
+
+    @include for-tablet-up {
+      display: none;
+    }
+  }
+
+  ul.nav {
+    list-style: none;
+    width: 100%;
+
+    @include padding-all(0);
+    @include flex(c, s, c);
+
+    li {
+      width: 100%;
+      // font-size: font-size(big);
+
+      a {
+        @extend .btn,
+        .btn-link;
+        display: block;
+        width: 100%;
+
+        @include padding-all(0);
+        @include margin-yx(2, 0);
+      }
+    }
+  }
+
+  .settings {
+    margin-left: auto;
+
+    @include flex-center();
+    @include padding-all(2);
+
+    .icon {
+      margin-left: space(2);
+    }
+  }
+}
+
+.search-bar {
+  flex: 1;
+  max-width: 400px;
+  color: color(dark);
+
+  @include margin-yx(0, 5);
+
+  @include for-phone-only {
+    display: none;
+  }
+
+  label {
+    padding: 0;
+
+    .input-bar {
+      background-color: rgba(color(light), 0.2);
+      color: color(light);
+      border: none;
+      transition: all $transition-duration;
+
+      &:focus-within,
+      &:hover,
+      &.active {
+        background-color: color(light);
+        color: color(dark);
+        border: none;
+
+        path {
+          fill: color(dark);
+        }
+      }
+
+      &.active {
+        .clear-search {
+          display: block;
+        }
+      }
+
+      .icon.search {
+        margin-right: space(2);
+      }
+
+      .clear-search {
+        display: none;
+        font-size: font-size(small);
+      }
+
+      svg {
+        cursor: pointer;
+
+        path {
+          fill: color(light);
+        }
+      }
+    }
+  }
+}
