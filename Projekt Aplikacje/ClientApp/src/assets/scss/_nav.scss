@@ -1,8 +1,9 @@
 .navbar {
   width: 100%;
   z-index: 10;
+  color: color(dark);
+  height: 50px;
 
-  @include bg-text-color(primary);
   @include flex(c, sb, r);
   @include padding-yx(2, 4);
 
@@ -98,16 +99,14 @@
 }
 
 .navbar-collapse {
-  position: absolute;
+  position: fixed;
   left: -100%;
-  top: 0;
+  top: 50px;
   max-width: 100%;
   min-width: 230px;
-  height: 100vh;
+  height: calc(100vh - 50px);
   z-index: 10;
   transition: left $transition-duration;
-
-  @include bg-text-color(light, dark);
 
   &.active {
     left: 0;
@@ -185,8 +184,8 @@
       // font-size: font-size(big);
 
       a {
-        @extend .btn,
-        .btn-link;
+        // @extend .btn,
+        // .btn-link;
         display: block;
         width: 100%;
 
