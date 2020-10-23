@@ -1,5 +1,147 @@
 @import "../../../assets/scss/required";
 
-nav {
-    
+.navbar {
+  height: 50px;
+  z-index: 100;
+  position: relative;
+
+  @include padding-yx(2, 4);
+  @include flex(c, s, r);
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: color(light, dark);
+    z-index: 10;
+  }
+
+  .container {
+    max-width: 1000px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+
+    @include flex(c, s, r);
+  }
+
+  .open-nav,
+  .close-nav {
+    display: none;
+    margin-right: space(3);
+
+    &.active {
+      display: block;
+    }
+
+    @include for-tablet-up {
+      &.active {
+        display: none;
+      }
+    }
+  }
+
+  .brand {
+    font-weight: bold;
+    margin-right: space(3);
+  }
+
+  .navbar-collapse {
+    position: fixed;
+    top: 50px;
+    left: -100%;
+    height: calc(100vh - 50px);
+    transition: left $transition-duration;
+
+    &.active {
+      left: 0;
+
+      .curtain {
+        display: block;
+        @include for-tablet-up {
+          display: none;
+        }
+      }
+    }
+
+    @include for-tablet-up {
+      position: static;
+    }
+
+    .curtain {
+      position: fixed;
+      top: 50px;
+      left: 0;
+      background-color: color(dark);
+      opacity: 0.2;
+      width: 100%;
+      height: calc(100% - 50px);
+      z-index: -1;
+      display: none;
+    }
+
+    .nav-container {
+      background-color: color(light);
+      height: 100%;
+
+      @include flex-center();
+      @include padding-yx(2, 4);
+
+      @include for-tablet-up {
+        background: transparent;
+        @include padding-all(0);
+      }
+
+      ul.nav {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        @include flex(s, c, c);
+
+        @include for-tablet-up {
+          @include flex(c, s, r);
+        }
+
+        li {
+          @include margin-yx(3, 0);
+
+          @include for-tablet-up {
+            @include margin-yx(0, 3);
+          }
+
+          a {
+            @include flex(c, s, r);
+            .icon {
+              margin-right: space(2);
+
+              @include for-tablet-up {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .navbar-static {
+    margin-left: auto;
+    ul.nav {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      li a {
+        @include flex(c, s, r);
+
+        span {
+          margin-right: space(2);
+        }
+      }
+    }
+  }
 }

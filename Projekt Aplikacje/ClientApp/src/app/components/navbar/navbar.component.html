@@ -1,30 +1,136 @@
 <nav class="navbar">
-    <div class="open-nav">Open</div>
-    <div class="close-nav">Close</div>
+  <div class="open-nav active icon">
+    <svg
+      class="icon"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 22"
+    >
+      <path d="M0 1h24M0 11h24M0 21h24" stroke="#000" stroke-width="2" />
+    </svg>
+  </div>
+  <div class="close-nav icon">
+    <svg
+      class="icon"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M12 13.393L22.4 24l1.131-1.154-10.4-10.607L24 1.154 22.869 0 12 11.085 1.131 0 0 1.154l10.869 11.085-10.4 10.607L1.6 24 12 13.393z"
+        fill="#000"
+      />
+    </svg>
+  </div>
 
-    <div class="brand">
-        <a routerLink="/">Natdim Health</a>
-    </div>
+  <a class="brand" routerLink="/">Natdim Health</a>
 
-    <div class="navbar-collapse">
-        <div class="curtain"></div>
-        <div class="nav-container">
-            <ul class="nav">
-                <li>
-                    <a href="">Woda</a>
-                </li>
-            </ul>
-        </div>
+  <div class="navbar-collapse" id="nav">
+    <div class="curtain close-nav"></div>
+    <div class="nav-container">
+      <ul class="nav">
+        <li>
+          <a href="">
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path fill="#C4C4C4" d="M0 0h24v24H0z" />
+            </svg>
+            Woda
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path fill="#C4C4C4" d="M0 0h24v24H0z" />
+            </svg>
+            Kalorie
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path fill="#C4C4C4" d="M0 0h24v24H0z" />
+            </svg>
+            Sen
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path fill="#C4C4C4" d="M0 0h24v24H0z" />
+            </svg>
+            Trening
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path fill="#C4C4C4" d="M0 0h24v24H0z" />
+            </svg>
+            Kalkulator zapotrzebowania
+          </a>
+        </li>
+        <li>
+          <a routerLink="/">
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path fill="#C4C4C4" d="M0 0h24v24H0z" />
+            </svg>
+            BMI
+          </a>
+        </li>
+      </ul>
     </div>
+  </div>
 
-    <div class="navbar-static">
-        <ul class="nav">
-            <li>
-                <a routerLink="/">
-                    <span>Witaj Marek</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+  <div class="navbar-static">
+    <ul class="nav">
+      <li>
+        <a routerLink="/zaloguj">
+          <span>Zaloguj się</span>
+          <svg
+            class="icon"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M15.369 10.944l.504-.487c.976-.941 1.575-2.23 1.575-3.657 0-2.872-2.44-5.2-5.448-5.2-3.008 0-5.447 2.328-5.447 5.2 0 1.426.599 2.716 1.574 3.657l.505.487.616.345c.807.452 1.745.711 2.752.711 1.007 0 1.946-.26 2.752-.71l.617-.346zm2.588 1.17a8.896 8.896 0 00-.892-.532l.005-.005a6.88 6.88 0 001.036-1.272A6.539 6.539 0 0019.124 6.8c0-3.756-3.19-6.8-7.124-6.8-3.934 0-7.124 3.044-7.124 6.8a6.54 6.54 0 001.019 3.505c.292.463.64.89 1.035 1.272l.006.005a8.894 8.894 0 00-1.407.91c-1.435 1.148-2.316 2.68-2.329 4.362V24h17.6v-7.146c-.013-1.683-.893-3.214-2.328-4.362a8.118 8.118 0 00-.515-.379zM4.877 22.4h14.247v-5.535c-.01-1.194-.737-2.44-2.027-3.372a6.955 6.955 0 00-1.183-.687 7.794 7.794 0 00-.314-.137 7.35 7.35 0 01-3.6.931 7.35 7.35 0 01-3.6-.93 7.798 7.798 0 00-.667.31 6.935 6.935 0 00-.83.513c-1.29.931-2.016 2.176-2.026 3.37V22.4z"
+              fill="#000"
+            />
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </div>
 </nav>
-

@@ -7,11 +7,11 @@
 }
 
 @mixin for-tablet-down {
-    @media (max-width: 850px) { @content; }
+    @media (max-width: 890px) { @content; }
 }
 
 @mixin for-tablet-up {
-    @media (min-width: 851px) { @content; }
+    @media (min-width: 891px) { @content; }
 }
 
 @mixin for-desktop-down {

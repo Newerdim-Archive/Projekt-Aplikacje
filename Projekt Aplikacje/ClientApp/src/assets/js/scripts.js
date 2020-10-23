@@ -46,14 +46,14 @@ var initialNav = function () {
     ? void 0
     : closeNavButtons.forEach(function (button) {
         return button.addEventListener("click", function () {
-          closeNavT();
+          closeNav();
         });
       });
   openNavButtons === null || openNavButtons === void 0
     ? void 0
     : openNavButtons.forEach(function (button) {
         return button.addEventListener("click", function () {
-          openNavT();
+          openNav();
         });
       });
 };
