@@ -3,7 +3,7 @@ form {
     @include margin-yx(3, 0);
 
     &:first-child {
-      @include margin-yx(2, 1);
+      @include margin-yx(2, 0);
     }
   }
 }
@@ -18,7 +18,7 @@ form {
     @include flex(st, s, r);
   }
 
-  &>* {
+  & > * {
     width: 100%;
   }
 
@@ -27,7 +27,7 @@ form {
     top: - font-size(small);
     left: 0;
     display: block;
-    opacity: .7;
+    opacity: 0.7;
     transition: all $transition-duration;
     z-index: 1;
     pointer-events: none;
@@ -36,7 +36,7 @@ form {
     @include padding-all(0);
     @include margin-yx(2, 0);
 
-    &~input {
+    & ~ input {
       margin-top: space(1);
     }
   }
@@ -57,7 +57,7 @@ form {
     @include margin-yx(2, 0);
 
     &.border-left {
-      border-left: 1px solid rgba(color(dark, lighten), .4);
+      border-left: 1px solid rgba(color(dark, lighten), 0.4);
     }
 
     &:focus,
@@ -66,7 +66,7 @@ form {
       border-bottom: 1px solid color(primary);
       z-index: 1;
 
-      &~label {
+      & ~ label {
         top: - font-size();
 
         @include padding-yx(0, 0);
@@ -79,7 +79,7 @@ form {
     }
 
     &.active {
-      &~label {
+      & ~ label {
         top: - font-size();
 
         @include padding-yx(0, 0);
@@ -87,7 +87,7 @@ form {
       }
     }
 
-    &~label {
+    & ~ label {
       top: 0;
 
       @include padding-yx(1, 0);
@@ -106,25 +106,24 @@ form {
 
     padding-left: 0 !important; // Line up with label
 
-    &:focus~label,
-    &.active~label,
-    &~label {
+    &:focus ~ label,
+    &.active ~ label,
+    & ~ label {
       @include padding-yx(0, 1);
     }
 
     option {
-      @include bg-text-color(light);
+      color: color(dark);
     }
 
     &.dark option {
-      @include bg-text-color(dark);
+      color: color(light);
     }
   }
 
   textarea {
     resize: none;
   }
-
 }
 
 .search-bar {
