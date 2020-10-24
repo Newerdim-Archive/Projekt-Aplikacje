@@ -28,6 +28,16 @@ $values: (
     padding:  space($top) space($right) space($bottom) space($left);
 }
 
+@mixin padding-x($number) {
+    padding-right: space($number);
+    padding-left: space($number);
+}
+
+@mixin padding-y($number) {
+    padding-top: space($number);
+    padding-bottom: space($number);
+}
+
 @mixin padding-yx($y, $x) {
     padding: space($y) space($x);
 }
@@ -40,6 +50,16 @@ $values: (
     margin:  space($top) space($right) space($bottom) space($left);
 }
 
+@mixin margin-x($number) {
+    margin-right: space($number);
+    margin-left: space($number);
+}
+
+@mixin margin-y($number) {
+    margin-top: space($number);
+    margin-bottom: space($number);
+}
+
 @mixin margin-yx($y, $x) {
     margin: space($y) space($x);
 }
@@ -47,6 +67,7 @@ $values: (
 @mixin margin-all($number) {
     margin: space($number);
 }
+
 
 /* #endregion */
 
