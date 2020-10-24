@@ -3,7 +3,10 @@
 .navbar {
   height: 50px;
   z-index: 100;
-  position: relative;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: color(light);
 
   @include padding-yx(2, 4);
   @include flex(c, s, r);
@@ -37,7 +40,7 @@
       display: block;
     }
 
-    @include for-tablet-up {
+    @include for-desktop-up {
       &.active {
         display: none;
       }
@@ -53,7 +56,9 @@
     position: fixed;
     top: 50px;
     left: -100%;
-    height: calc(100vh - 50px);
+    height: 100%;
+    max-height: calc(100vh - 50px);
+    overflow-y: auto;
     transition: left $transition-duration;
 
     &.active {
@@ -61,14 +66,15 @@
 
       .curtain {
         display: block;
-        @include for-tablet-up {
+        @include for-desktop-up {
           display: none;
         }
       }
     }
 
-    @include for-tablet-up {
+    @include for-desktop-up {
       position: static;
+      height: auto;
     }
 
     .curtain {
@@ -85,12 +91,11 @@
 
     .nav-container {
       background-color: color(light);
-      height: 100%;
 
       @include flex-center();
       @include padding-yx(2, 4);
 
-      @include for-tablet-up {
+      @include for-desktop-up {
         background: transparent;
         @include padding-all(0);
       }
@@ -99,17 +104,18 @@
         list-style-type: none;
         margin: 0;
         padding: 0;
+        height: 100%;
 
         @include flex(s, c, c);
 
-        @include for-tablet-up {
+        @include for-desktop-up {
           @include flex(c, s, r);
         }
 
         li {
           @include margin-yx(3, 0);
 
-          @include for-tablet-up {
+          @include for-desktop-up {
             @include margin-yx(0, 3);
           }
 
@@ -118,7 +124,7 @@
             .icon {
               margin-right: space(2);
 
-              @include for-tablet-up {
+              @include for-desktop-up {
                 display: none;
               }
             }
