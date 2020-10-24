@@ -64,6 +64,16 @@ $strongest-lightness: 40%;
     @return null;
 }
 
+@function dark-or-light-color($color, $tone: base) {
+    $bgColor: color($color, $tone);
+
+    @if($bgColor != null) {
+        @return if(lightness($bgColor) > 65, color(dark), color(light));
+    }
+
+    @return null;
+}
+
 @function tint($color, $percentage) {
     @return mix(white, $color, $percentage);
 }
