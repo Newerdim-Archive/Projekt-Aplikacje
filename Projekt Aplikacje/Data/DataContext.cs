@@ -15,11 +15,6 @@ namespace Projekt_Aplikacje.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Gender>().HasData(
-                    new Gender { Id = 1, Name = "Mężczyzna" },
-                    new Gender { Id = 2, Name = "Kobieta" }
-                );
-
             modelBuilder.Entity<DataGroup>().HasData(
                     new DataGroup { Id = 1, Name = "Waga", Unit = "kg", Datas = new List<DataModel>() },
                     new DataGroup { Id = 2, Name = "Kalorie", Unit = "kcal", Datas = new List<DataModel>() },
@@ -31,7 +26,6 @@ namespace Projekt_Aplikacje.Data
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Gender> Genders { get; set; }
         public DbSet<DataGroup> DataGroups { get; set; }
         public DbSet<DataModel> Datas { get; set; }
     }
