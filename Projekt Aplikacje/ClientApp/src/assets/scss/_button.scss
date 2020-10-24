@@ -20,7 +20,7 @@
   /* #endregion */
 
   /* #region Classes */
-  @each $name, $tons in $palettes {
+  @each $name, $value in $palette {
     /* #region  Types */
 
     /* #region  Normal */
