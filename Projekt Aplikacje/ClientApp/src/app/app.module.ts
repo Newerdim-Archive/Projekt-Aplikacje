@@ -11,21 +11,23 @@ import { AppComponent } from './app.component';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
-import { DataSummaryComponent } from './components/data-summary/data-summary.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserFormsComponent } from './components/user-forms/user-forms.component';
+import { DataGroupComponent } from './components/data-group/data-group.component';
+import { DataComponent } from './components/data-group/data/data.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    DataSummaryComponent,
     LoginComponent,
     RegisterComponent,
     UserFormsComponent,
+    DataGroupComponent,
+    DataComponent,
   ],
   imports: [
     BrowserModule,
