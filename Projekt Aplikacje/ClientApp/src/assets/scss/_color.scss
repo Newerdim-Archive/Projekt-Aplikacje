@@ -58,7 +58,7 @@ $strongest-lightness: 40%;
     $bgColor: color($color, $tone);
 
     @if($bgColor != null) {
-        @return if(lightness($bgColor) > 65, $dark, $light);
+        @return if(lightness($bgColor) > 65, color(dark), color(light));
     }
 
     @return null;
@@ -70,4 +70,22 @@ $strongest-lightness: 40%;
 
 @function shade($color, $percentage) {
     @return mix(black, $color, $percentage);
+}
+
+@mixin bg-text-color($color, $tone: base) {
+    $bgColor: color($color, $tone);
+
+    background-color: color($color, $tone);
+
+    @if($bgColor !=null) {
+        color: if(lightness($bgColor) > 65, color(dark), color(light));
+    }
+}
+
+@mixin text-color-by-lightness($color, $tone: base) {
+    $bgColor: color($color, $tone);
+
+    @if($bgColor !=null) {
+        color: if(lightness($bgColor) > 65, color(dark), color(light));
+    }
 }
