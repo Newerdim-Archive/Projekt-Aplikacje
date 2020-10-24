@@ -2,6 +2,7 @@
 @import "assets/scss/required";
 @import "assets/scss/inputMinimal";
 @import "assets/scss/button";
+@import "assets/scss/dropdown";
 
 * {
   box-sizing: border-box;
@@ -26,6 +27,15 @@ main {
   height: 1.3em;
 }
 
+.icon.big {
+  width: 1.5em;
+  height: 1.5em;
+
+  path {
+    stroke: 3px;
+  }
+}
+
 a {
   text-decoration: none;
   color: color(dark);
@@ -35,6 +45,10 @@ a {
   color: color(danger, light);
   font-size: font-size();
   font-weight: bold;
-  
+
   @include margin-yx(3, 0);
+}
+
+.swal2-bg-transparent {
+  background: transparent !important;
 }
