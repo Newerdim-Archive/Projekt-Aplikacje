@@ -49,15 +49,19 @@
         opacity: 0;
         transition: opacity $transition-duration;
         margin-top: space(1);
-        z-index: 1;
+        z-index: 100;
         position: absolute;
+        top: 100%;
+        right: 0;
         min-width: 100%;
+        width: fit-content;
 
         @include flex(st, s, c);
 
 
         .dropdown-items > a {
             display: block;
+            white-space: nowrap;
             
             @include padding-yx(2, 3);
 
@@ -72,47 +76,54 @@
         }
     }
 
-    @each $color, $tons in $palettes {
-        &.#{$color} {
+    @each $name, $value in $palette {
+        &.#{$name} {
             & > .dropdown-button {
                 @extend .btn;
-                @extend .btn-#{$color};
+                @extend .btn-#{$name};
 
                 .arrow {
-                    border-top-color: text-color-by-lightness($color);
+                    border-top-color: text-color-by-lightness($name);
                 }
             }
 
             & > .dropdown-content > .dropdown-items > a {
-                @include bg-text-color($color);
+                @include bg-text-color($name);
 
                 &:hover {
-                    @include bg-text-color($color, dark);
+                    @include bg-text-color($name, dark);
                 }
             }
         }
 
-        &.border-#{$color} {
+        &.border-#{$name} {
             border: none;
 
             & > .dropdown-button {
                 @extend .btn;
-                @extend .btn-outline-#{$color};
+                @extend .btn-outline-#{$name};
 
                 &:hover .arrow {
-                    border-top-color: text-color-by-lightness($color);
+                    border-top-color: text-color-by-lightness($name);
                 }
 
                 .arrow {
-                    border-top-color: color($color);
+                    border-top-color: color($name);
                 }
             }
 
+            & > .dropdown-content {
+                border: 1px solid color($name);
+                background-color: dark-or-light-color($name);
+            }
+
             & > .dropdown-content > .dropdown-items > a {
-                @include bg-text-color($color);
+                width: fit-content;
+                color: color(dark);
+                background-color: dark-or-light-color($name);
 
                 &:hover {
-                    @include bg-text-color($color, dark);
+                    text-decoration: underline;
                 }
             }
         }
