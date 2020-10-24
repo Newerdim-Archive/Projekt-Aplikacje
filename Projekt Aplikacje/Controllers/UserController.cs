@@ -46,7 +46,7 @@ namespace Todo.Controllers
             var userInDb = await _uow.Auth.LoginAsync(userForLoginDto.Username, userForLoginDto.Password);
 
             if (userInDb == null)
-                return NotFound("Nazwa użytkownika lub hasło są nieprawidłowe");
+                return NotFound("Nazwa użytkownika lub hasło jest nieprawidłowe.");
 
             var accessToken = GenerateJwtToken(userInDb, _appSettings.AccessTokenSecret, 0, 1);
             var refreshToken = GenerateJwtToken(userInDb, _appSettings.RefreshTokenSecret, 5, 0, true);
@@ -59,7 +59,7 @@ namespace Todo.Controllers
         public async Task<IActionResult> Register(UserForRegistrationDto userForRegistrationDto)
         {
             if (await _uow.Auth.UserExistAsync(userForRegistrationDto.Username))
-                return BadRequest("Użytkownik o takiej nazwie już istnieje");
+                return BadRequest("Użytkownik o takiej nazwie już istnieje.");
 
             var userToCreate = _mapper.Map<User>(userForRegistrationDto);
 
@@ -149,20 +149,20 @@ namespace Todo.Controllers
             var refreshToken = Request.Cookies["refreshToken"];
 
             if (string.IsNullOrEmpty(refreshToken))
-                return NotFound("Nie znaleziono refresh tokenu");
+                return NotFound("Nie znaleziono refresh tokenu.");
 
             var userId = GetUserIdFromToken(refreshToken);
 
             if (userId == null)
-                return NotFound("Użytkownik o takim id nie istnieje");
+                return NotFound("Użytkownik o takim id nie istnieje.");
 
             var userInDb = await _uow.Auth.GetUserByIdAsync((int)userId);
 
             if (userInDb == null)
-                return NotFound("Użytkownik z tokenu nie istnieje");
+                return NotFound("Użytkownik z tokenu nie istnieje.");
 
             if (!ValidateToken(refreshToken, userInDb, _appSettings.RefreshTokenSecret, true))
-                return BadRequest("Token jest nieprawidłowy");
+                return BadRequest("Token jest nieprawidłowy.");
 
             var accessToken = GenerateJwtToken(userInDb, _appSettings.AccessTokenSecret, 0, 1);
             refreshToken = GenerateJwtToken(userInDb, _appSettings.RefreshTokenSecret, 5, 0, true);
