@@ -8,6 +8,7 @@ import {
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +27,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
+      username: ['', [Validators.required, Validators.minLength(6)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
@@ -34,13 +35,32 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
+      Swal.fire({
+        title: 'Oczekiwanie na odpowiedź od serwera...',
+        timerProgressBar: true,
+        willOpen: () => {
+          Swal.showLoading();
+        }
+      });
       this.authService
         .register(this.username.value, this.email.value, this.password.value)
         .subscribe(
           (result) => {
-            this.router.navigate(['/login']);
+            // this.router.navigate(['/login']);
+            Swal.close();
+            Swal.fire({
+              icon: 'success',
+              title: 'Konto zostało założone pomyślnie!',
+              text: 'Możesz się zalogować.',
+            });
           },
           (error: HttpErrorResponse) => {
+            Swal.close();
+            Swal.fire({
+              icon: 'error',
+              title: `Oops...`,
+              text: error.error,
+            });
             this.errorMessage = error.error;
           }
         );

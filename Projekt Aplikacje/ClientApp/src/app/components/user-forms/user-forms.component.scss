@@ -1,0 +1,47 @@
+@import "../../../assets/scss/required";
+
+.user-forms {
+  width: 100%;
+  min-height: 350px;
+  height: calc(100% - 50px);
+  max-width: 1000px;
+
+  @include padding-yx(4, 0);
+  @include margin-yx(0, auto);
+  @include flex(c, s, c);
+
+  @include for-tablet-up() {
+    @include flex(c, sb, r);
+    @include margin-y(0);
+    @include padding-y(0);
+  }
+
+  .divider {
+    width: 100%;
+    max-width: 400px;
+
+    @include margin-y(4);
+    @include flex(c, c, c);
+
+    @include for-tablet-up() {
+        width: auto;
+    }
+
+    span {
+        font-size: font-size(bigger);
+        font-weight: bold;
+
+        @include underline(color(primary), 10px);
+    }
+
+    hr {
+      width: 100%;
+
+      @include margin-yx(3, auto);
+
+      @include for-tablet-up() {
+        display: none;
+      }
+    }
+  }
+}

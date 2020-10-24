@@ -1,5 +1,5 @@
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/user-forms/register/register.component';
+import { LoginComponent } from './components/user-forms/login/login.component';
 import { AuthHttpInterceptor } from './http-interceptors/auth-http-interceptor';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie-service';
@@ -15,6 +15,7 @@ import { DataSummaryComponent } from './components/data-summary/data-summary.com
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserFormsComponent } from './components/user-forms/user-forms.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     DataSummaryComponent,
     LoginComponent,
     RegisterComponent,
+    UserFormsComponent,
   ],
   imports: [
     BrowserModule,

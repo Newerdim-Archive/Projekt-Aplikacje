@@ -1,35 +1,28 @@
-<div>
-  <h1>Login</h1>
-  <div class="text-danger my-3 text-bold" *ngIf="errorMessage">
+<div class="login-form">
+  <h1>Zaloguj się</h1>
+  <div class="error-message" *ngIf="errorMessage">
     {{ errorMessage }}<br />
-    Recover password or create new account
   </div>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group-minimal">
       <input
         class="form-control"
-        id="username"
+        id="login-username"
         type="text"
         formControlName="username"
       />
-      <label for="username">Username</label>
+      <label for="login-username">Nazwa użytkownika</label>
       <span
         class="validation-error"
         *ngIf="username.hasError('required') && username.touched"
       >
-        Username is required
-      </span>
-      <span
-        class="validation-error"
-        *ngIf="username.hasError('minlength') && username.touched"
-      >
-        Min lenght 3 characters
+        Nazwa użytkownika jest wymagana
       </span>
     </div>
     <div class="form-group-minimal">
       <input
         class="form-control"
-        id="password"
+        id="login-password"
         type="password"
         formControlName="password"
       />
@@ -38,22 +31,12 @@
         class="validation-error"
         *ngIf="password.hasError('required') && password.touched"
       >
-        Password is required
-      </span>
-      <span
-        class="validation-error"
-        *ngIf="password.hasError('minlength') && password.touched"
-      >
-        Min lenght 3 characters
+        Hasło jest wymagane
       </span>
     </div>
-    <a href="#" class="mb-3">Forgot password?</a>
+    <a class="disabled forgot-password" href="#">Zapomniałeś hasła?</a>
     <button class="btn btn-primary" [disabled]="!loginForm.valid" type="submit">
-      Login
+      Zaloguj się
     </button>
   </form>
-
-  <hr class="my-4" />
-
-  <a routerLink="/zarejestruj" class="btn btn-primary">Create new account</a>
 </div>

@@ -1,0 +1,21 @@
+@import "../../../../assets/scss/required";
+
+:host {
+  width: 100%;
+  max-width: 350px;
+}
+
+.register-form {
+  width: 100%;
+  @include padding-yx(2, 4);
+
+  h1 {
+    margin: 0 auto space(3);
+
+    @include underline(color(primary), 10px);
+
+    @include for-tablet-up() {
+      margin-top: auto;
+    }
+  }
+}
