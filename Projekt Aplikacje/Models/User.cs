@@ -15,8 +15,6 @@ namespace Todo.Models
 
         public string Email { get; set; }
 
-        public Gender Gender { get; set; }
-
         public DateTime CreateDate { get; set; }
 
         public byte[] PasswordSalt { get; set; }
