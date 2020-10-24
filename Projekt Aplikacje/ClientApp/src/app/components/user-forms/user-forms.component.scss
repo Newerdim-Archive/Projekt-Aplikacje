@@ -31,7 +31,7 @@
         font-size: font-size(bigger);
         font-weight: bold;
 
-        @include underline(color(primary), 10px);
+        @include underline(color(primary));
     }
 
     hr {
