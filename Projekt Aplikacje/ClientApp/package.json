@@ -20,11 +20,13 @@
     "@angular/platform-browser-dynamic": "~10.0.14",
     "@angular/router": "~10.0.14",
     "@auth0/angular-jwt": "^5.0.1",
+    "@sweetalert2/ngx-sweetalert2": "^8.1.1",
     "@types/chart.js": "^2.9.27",
     "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^0.7.0",
     "ngx-cookie-service": "^10.1.1",
     "rxjs": "~6.5.5",
+    "sweetalert2": "^10.8.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },

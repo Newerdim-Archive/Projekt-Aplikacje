@@ -18,6 +18,7 @@ import { UserFormsComponent } from './components/user-forms/user-forms.component
 import { DataGroupComponent } from './components/data-group/data-group.component';
 import { DataComponent } from './components/data-group/data/data.component';
 import { DataFormComponent } from './components/data-form/data-form.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
@@ -48,6 +49,7 @@ registerLocaleData(localePl);
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    [SweetAlert2Module.forRoot()],
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pl-PL' },
