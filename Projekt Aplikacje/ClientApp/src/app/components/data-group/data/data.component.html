@@ -1,1 +1,4 @@
-<p>data works!</p>
+<div class="data" (click)="showDataModal()">
+  <span class="date">{{ data.date | date: "dd MMM yyyy" }}</span>
+  <span class="value">{{ data.value }} {{ unit }}</span>
+</div>

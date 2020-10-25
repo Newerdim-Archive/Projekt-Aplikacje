@@ -1,1 +1,32 @@
-<p>data-group works!</p>
+<div class="data-group">
+  <div class="data-header">
+    <h3>{{ dataGroup?.name }}</h3>
+    <button class="btn btn-link add-data" (click)="showDataModal()">
+      <svg
+        class="icon small"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8.533 7.467V0H7.467v7.467H0v1.066h7.467V16h1.066V8.533H16V7.467H8.533z"
+          fill="#000"
+        />
+      </svg>
+      Dodaj
+    </button>
+  </div>
+  <div class="chart-container">
+    <canvas id="myChart" style="height: 80%"></canvas>
+  </div>
+  <div class="data-list">
+    <div class="data-list-header">
+      <b>Data</b>
+      <b>Ilość</b>
+    </div>
+    <app-data *ngFor="let data of datas" [data]="data" [unit]="dataGroup?.unit"></app-data>
+    <p class="no-data" *ngIf="datas?.length === 0">
+        Brak danych.
+    </p>
+</div>
+</div>

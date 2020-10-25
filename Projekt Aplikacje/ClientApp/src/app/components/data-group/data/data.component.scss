@@ -1,0 +1,9 @@
+@import "../../../../assets/scss/required";
+
+.data {
+    margin-bottom: space(1);
+    border-bottom:  1px solid color(shadow);
+    
+    @include flex(c, sb, r);
+    @include padding-y(2);
+}
