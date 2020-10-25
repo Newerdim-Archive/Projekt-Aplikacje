@@ -24,6 +24,7 @@ namespace Projekt_Aplikacje.Helper
             // Domain To Dto
             CreateMap<DataModel, DataDto>();
             CreateMap<DataGroup, DataGroupDto>();
+            CreateMap<DataGroup, DataGroupWithoutDataDto>();
         }
     }
 }
