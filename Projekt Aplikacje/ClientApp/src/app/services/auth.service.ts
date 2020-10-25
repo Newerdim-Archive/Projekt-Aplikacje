@@ -110,6 +110,6 @@ export class AuthService {
 
   logOut(): void {
     this.deleteTokens();
-    this.router.navigateByUrl('/logowanie');
+    this.router.navigate(['/logowanie']);
   }
 }
