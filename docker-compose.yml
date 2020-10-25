@@ -1,7 +1,7 @@
 version: "3.8"
 
 networks:
-    localdev:
+    localdev2:
         name: localdev2
 
 services:
