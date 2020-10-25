@@ -1,4 +1,4 @@
-interface IDataModel {
+export interface IDataModel {
   id: number;
   value: number;
   date: Date;
