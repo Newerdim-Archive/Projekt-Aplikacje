@@ -61,7 +61,14 @@ export class AuthHttpInterceptor implements HttpInterceptor {
         })
       );
     } else {
-      return next.handle(this.updateHeader(req));
+      return next.handle(this.updateHeader(req)).pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (!error.status) {
+            this.router.navigate(['/error']);
+            return throwError(error);
+          }
+        })
+      );
     }
   }
 
