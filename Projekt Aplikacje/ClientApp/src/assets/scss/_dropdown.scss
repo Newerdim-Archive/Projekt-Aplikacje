@@ -4,6 +4,7 @@
     // &:hover > .dropdown-content,
     &:focus-within > .dropdown-content{
         opacity: 1;
+        pointer-events: auto;
     }
 
     .dropdown-button {
@@ -47,6 +48,7 @@
 
     .dropdown-content {
         opacity: 0;
+        pointer-events: none;
         transition: opacity $transition-duration;
         margin-top: space(1);
         z-index: 100;
@@ -59,7 +61,8 @@
         @include flex(st, s, c);
 
 
-        .dropdown-items > a {
+        .dropdown-items > a,
+        .dropdown-items > button {
             display: block;
             white-space: nowrap;
             
