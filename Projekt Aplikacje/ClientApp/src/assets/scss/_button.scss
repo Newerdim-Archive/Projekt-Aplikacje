@@ -9,7 +9,7 @@
   transition: all 0.3s;
 
   @include flex-center();
-  @include padding-yx(2, 3);
+  @include padding-yx(2, 0);
 
   &:focus,
   &:active {
