@@ -14,15 +14,15 @@ export class DataGroupService {
     return this.http.get<DataGroup[]>(environment.apiUrl + '/datagroup');
   }
 
-  getById(id: number, howManyData?: number): Observable<DataGroup> {
+  getById(id: number, howManyData: number): Observable<DataGroup> {
     return this.http.get<DataGroup>(
-      environment.apiUrl + `/datagroup/${id}/${howManyData}`
+      environment.apiUrl + `/datagroup/${id}/${howManyData ?? ''}`
     );
   }
 
   getByName(name: string, howManyData?: number): Observable<DataGroup> {
     return this.http.get<DataGroup>(
-      environment.apiUrl + `/datagroup/${name}/${howManyData}`
+      environment.apiUrl + `/datagroup/${name}/${howManyData ?? ''}`
     );
   }
 }
