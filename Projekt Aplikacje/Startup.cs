@@ -79,7 +79,7 @@ namespace Projekt_Aplikacje
 
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "ClientApp/dist/ClientApp/";
             });
         }
 

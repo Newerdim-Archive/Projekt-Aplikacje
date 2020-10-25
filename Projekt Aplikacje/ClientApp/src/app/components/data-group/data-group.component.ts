@@ -96,8 +96,6 @@ export class DataGroupComponent implements OnInit {
   }
 
   generateChart(type: string): void {
-    // const canvas = document.getElementById('myChart').getContext('2d');
-
     const labels = this.datas
       .filter((d, index) => index < 7)
       .map((d) => new DatePipe('pl-PL').transform(d.date, 'dd MMM yyyy'));
