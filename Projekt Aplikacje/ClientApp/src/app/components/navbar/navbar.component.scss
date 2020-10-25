@@ -169,3 +169,7 @@
     }
   }
 }
+
+.user-button {
+  @include padding-yx(1, 0);
+}

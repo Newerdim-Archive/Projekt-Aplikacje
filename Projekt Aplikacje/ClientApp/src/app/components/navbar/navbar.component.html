@@ -197,7 +197,7 @@
       </li>
       <li *ngIf="isLoggedIn()">
         <div class="dropdown border-shadow">
-          <button class="btn">
+          <button class="btn user-button">
             <span>{{ getUsername() }}</span>
             <svg
               class="icon"
@@ -215,7 +215,7 @@
           </button>
           <div class="dropdown-content">
             <div class="dropdown-items">
-              <a href="#" (click)="logOut()">Wyloguj się</a>
+              <button class="btn" (click)="logOut()">Wyloguj się</button>
             </div>
           </div>
         </div>
