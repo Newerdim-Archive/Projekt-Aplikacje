@@ -71,6 +71,7 @@ namespace Projekt_Aplikacje.Data
                     Unit = g.Unit,
                     Datas = g.Datas
                         .Where(d => d.UserId == userId)
+                        .OrderBy(d => d.Date)
                         .ToList()
                 })
                 .FirstOrDefaultAsync();
