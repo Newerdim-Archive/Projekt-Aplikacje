@@ -1,5 +1,5 @@
 var checkInputs = function () {
-  var inputs = document.querySelectorAll("input, textarea, select");
+  var inputs = document.querySelectorAll("input, textarea");
   inputs === null || inputs === void 0
     ? void 0
     : inputs.forEach(function (el) {
