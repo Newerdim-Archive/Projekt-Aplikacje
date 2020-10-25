@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DataMethod, UpdateDataModel } from 'src/app/models/updateDataModel';
 import { Chart } from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+// import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -19,7 +19,7 @@ import { DatePipe } from '@angular/common';
 export class DataGroupComponent implements OnInit {
   dataGroup: DataGroup;
   dataGroupName: string;
-  chart = [];
+  chart: any;
   // Method: DataMethod;
 
   constructor(
@@ -96,7 +96,7 @@ export class DataGroupComponent implements OnInit {
   }
 
   generateChart(type: string): void {
-    const canvas = document.querySelector('#myChart');
+    // const canvas = document.getElementById('myChart').getContext('2d');
 
     const labels = this.datas
       .filter((d, index) => index < 7)
@@ -104,7 +104,7 @@ export class DataGroupComponent implements OnInit {
 
     const data = this.datas.filter((d, index) => index < 7).map((d) => d.value);
 
-    this.chart = new Chart(canvas, {
+    this.chart = new Chart('myChart', {
       type,
       data: {
         labels,
@@ -133,8 +133,7 @@ export class DataGroupComponent implements OnInit {
           text: 'Podsumowanie tygodnia.',
           fontSize: 20,
           padding: 20,
-          fontColor: '#333',
-          onClick: null
+          fontColor: '#333'
         },
         legend: {
           display: false,
