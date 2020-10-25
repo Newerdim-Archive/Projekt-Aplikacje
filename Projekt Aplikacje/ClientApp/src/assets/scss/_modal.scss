@@ -18,7 +18,7 @@
 
   .content {
     background-color: color(light);
-    border: 1px solid color(dark, lighten);
+    border: 1px solid color(shadow);
 
     @include padding-all(4);
   }
