@@ -3,6 +3,8 @@
 @import "assets/scss/inputMinimal";
 @import "assets/scss/button";
 @import "assets/scss/dropdown";
+@import "assets/scss/modal";
+@import "assets/scss/checkbox-radio";
 
 * {
   box-sizing: border-box;
@@ -30,10 +32,11 @@ main {
 .icon.big {
   width: 1.5em;
   height: 1.5em;
+}
 
-  path {
-    stroke: 3px;
-  }
+.icon.small {
+  width: 1em;
+  height: 1em;
 }
 
 a {
