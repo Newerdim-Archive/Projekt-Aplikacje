@@ -2,18 +2,18 @@ version: "3.8"
 
 networks:
     localdev:
-        name: localdev
+        name: localdev2
 
 services:
     web:
         build: .
         restart: always
         ports:
-            - "8000:80"
+            - "8001:80"
         depends_on:
             - mysql-db
         networks:
-            - localdev
+            - localdev2
     mysql-db:
         image: mysql
         container_name: mysql-db
@@ -22,14 +22,6 @@ services:
         environment:
           MYSQL_ROOT_PASSWORD: "{/nXeALX+sR88cA@GW:cKEB/Z*?HcZCt"
         ports:
-            - "3306:3306"
+            - "3307:3306"
         networks:
-            - localdev
-    smtp:
-        image: namshi/smtp
-        container_name: smtp_relay
-        restart: always
-        ports:
-         - "25:25"
-        networks:
-         - localdev
+            - localdev2
