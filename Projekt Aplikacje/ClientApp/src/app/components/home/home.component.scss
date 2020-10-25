@@ -1,146 +1,87 @@
-@import '../../../assets/scss/required';
+@import "../../../assets/scss/required";
 
 .home-container {
+  width: 100%;
+  min-height: 350px;
+  height: calc(100% - 50px);
+
+  @include flex(c, s, c);
+
+  @include for-desktop-up() {
+    @include flex(c, sb, r);
+  }
+
+  .home-content {
+    width: 100%;
+    max-width: 1100px;
+
+    @include margin-x(auto);
+    @include padding-x(4);
+    @include flex(c, c, c);
+
     h1 {
-        position: absolute;
-        font-family: 'Roboto', sans-serif;
-        font-size: 90px;
-        font-weight: 100;
-        z-index: 1;
-        top:50px;
-        right: 400px;;
-        
-    }
-    hr{
-        position: absolute;
-        width: 1042px;
-        height: 15px;
-        left: 4px;
-        top: 220px;
-        background: #D2A0A0;
-        opacity: .5;
-       
+      text-align: center;
+
+      @include for-desktop-up() {
+        font-size: font-size(biggest);
+      }
     }
 
-    button{
-        position: absolute;
-        width: 200px;
-        height: 50px;
-        right: 50px;
-        top: 80px;
-        background-color:rgba(190, 143, 143, 0.06) ;
-        border: 3px, solid ;
-        border-radius: 20px;
-        font-family: 'Roboto', sans-serif;
-        font-weight: bold;
-        position: absolute;
-        font-size: 20px;
+    p {
+      font-size: font-size(big);
+      text-align: center;
+    }
 
-    }
-    .meal{
-        position: absolute;
-        width: 175px;
-        height: 170px;
-        right: 50px;
-        top:160px;
-        background: #CF8F8F;
-        border-radius: 20px;
-        opacity: .6;
+    .icon-list {
+        width: 100%;
+      @include flex(c, sa, r);
+      @include flex-wrap(w);
 
-    }
-    .bed{
-        position: absolute;
-        width: 175px;
-        height: 170px;
-        top:145px;
-        right: 180px;
-        background: rgba(115, 205, 255, 0.27);
-        border-radius: 20px;        
-    }
-    .dumbbell{
-        
-        position: absolute;
-        width: 147px;
-        height: 177px;
-        top: 300px;
-        right: 160px;
-        background: rgba(190, 143, 143, 0.12);
-        border-radius: 20px;
-       
+      .icon-container {
+        border-radius: $border-radius;
+        width: 10em;
+        height: 10em;
+        cursor: pointer;
+
+        @include margin-yx(3, 2);
+        @include flex(c, c, c);
+
+        svg {
+          width: 4em;
+          height: 4em;
+
+          margin-bottom: space(3);
         }
-    .calculator{
-        position: absolute;
-        width: 135px;
-        height: 152px;
-        right: 50px;
-        top: 335px;
-        background: rgba(255, 115, 115, 0.17);
-        border-radius: 20px;
+
+        &:nth-child(1) {
+          background-color: rgba(#ffaa42, 0.3);
+        }
+
+        &:nth-child(2) {
+          background-color: rgba(#ffd6a5, 0.3);
+        }
+
+        &:nth-child(3) {
+          background-color: rgba(#ca4fff, 0.3);
+        }
+
+        &:nth-child(4) {
+          background-color: rgba(#9bf6ff, 0.3);
+        }
+
+        &:nth-child(5) {
+          background-color: rgba(#a0c4ff, 0.3);
+        }
+      }
     }
 
-    .water{
-        position: absolute;
-        width: 120px;
-        height: 125px;
-        right: 130px;
-        top: 420px;
-        background: #B18F8F;
-        opacity: .4;
-        border-radius: 20px;
-    }
-    .weight{
-        position: absolute;
-        width: 170px;
-        height: 135px;
-        right: 60px;
-        top: 510px;
-        background: #CF8F8F;
-        opacity: .4;
-        border-radius: 20px;
-    }
-    .date_day{
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        left: 100px;
-        top: 200px;
-        background: #F2F2F2;
-        border: 1px solid rgba(0, 0, 0, 0.19);
-        box-sizing: border-box;
-        border-radius: 20px;
+    h3 {
+      text-align: center;
     }
 
-    h2{
-    
-        font-family: 'Roboto', sans-serif;
-        font-size: 55px;
-        font-weight: 100;
-        position: absolute;
-        left: 20px;
-        top: -30px;
-        
-        
+    a {
+      width: 250px;
+      margin-bottom: space(4);
     }
-    h3{
-        position: absolute;
-        width: 750px;
-        height: 30px;
-        left: 120px;
-        top: 330px;
-        font-family: 'Roboto', sans-serif;
-        font-weight: normal;
-        font-size: 20px;
-        text-align: justify; 
-        
-
-
-    }
-
-
-
-    
-
-
-
-    }
-
+  }
+}
