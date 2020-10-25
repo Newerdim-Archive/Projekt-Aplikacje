@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 declare const initialNav;
 
@@ -24,6 +25,17 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut(): void {
-    this.authService.logOut();
+    Swal.close();
+    Swal.fire({
+      icon: 'warning',
+      title: 'Czy na pewno chcesz się wylogować?',
+      showCancelButton: true,
+      confirmButtonText: 'Tak, wyloguj mnie.',
+      cancelButtonText: 'Nie. Zostanę jeszcze trochę.'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.logOut();
+      }
+    });
   }
 }
