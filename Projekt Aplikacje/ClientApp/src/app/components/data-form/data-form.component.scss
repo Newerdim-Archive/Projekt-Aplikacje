@@ -1,0 +1,23 @@
+@import "../../../assets/scss/spacing";
+@import "../../../assets/scss/flexbox";
+
+.data-form {
+  width: 100%;
+  max-width: 300px;
+  max-height: 100%;
+  overflow-y: auto;
+
+  .form-title {
+    margin-bottom: space(3);
+
+    @include flex(c, sb, r);
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  .delete-task {
+    margin-top: space(3);
+  }
+}
