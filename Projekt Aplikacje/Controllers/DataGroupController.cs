@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Projekt_Aplikacje.Data;
 using Projekt_Aplikacje.Models;
 using Todo.Data;
 
@@ -29,31 +27,53 @@ namespace Projekt_Aplikacje.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(_mapper.Map<DataGroupDto>(await _uow.DataGroup.GetAllWithoutDataAsync()));
+            var dataGroupsInDb = await _uow.DataGroup.GetAllWithoutDataAsync();
+
+            if (!dataGroupsInDb?.Any() ?? true)
+                return NotFound("Nie znaleziono grup.");
+
+            return Ok(_mapper.Map<ICollection<DataGroupWithoutDataDto>>(dataGroupsInDb));
         }
 
         [HttpGet("{groupName}/{howMany?}")]
-        public async Task<IActionResult> GetByName(string name, int? howMany = null)
+        public async Task<IActionResult> GetByName(string groupName, int? howMany = null)
         {
-            if (howMany.HasValue)
-                return Ok(await _uow.DataGroup.GetByNameWithUserDataAsync(name, howMany.Value, GetUserId()));
+            DataGroup dataGroupInDb;
+            groupName = groupName.ToLower();
 
-            return Ok(_mapper.Map<DataGroupDto>(
-                await _uow.DataGroup.GetByNameWithUserDataAsync(name, GetUserId())
-                ));
+            if (howMany.HasValue)
+            {
+                dataGroupInDb = await _uow.DataGroup.GetByNameWithUserDataAsync(groupName, howMany.Value, GetUserId());
+            }
+            else
+            {
+                dataGroupInDb = await _uow.DataGroup.GetByNameWithUserDataAsync(groupName, GetUserId());
+            }
+
+            if (dataGroupInDb == null)
+                return NotFound("Nie znaleziono grupy o takiej nazwie.");
+
+            return Ok(_mapper.Map<DataGroupDto>(dataGroupInDb));
         }
 
-        [HttpGet("{groupId}/{howMany?}")]
-        public async Task<IActionResult> GetById(int id, int? howMany = null)
+        [HttpGet("{groupId:int}/{howMany?}")]
+        public async Task<IActionResult> GetById(int groupId, int? howMany = null)
         {
-            if (howMany.HasValue)
-                return Ok(_mapper.Map<DataGroupDto>(
-                    await _uow.DataGroup.GetByIdWithUserDataAsync(id, howMany.Value, GetUserId())
-                    ));
+            DataGroup dataGroupInDb;
 
-            return Ok(_mapper.Map<DataGroupDto>(
-                await _uow.DataGroup.GetByIdWithUserDataAsync(id, GetUserId())
-                ));
+            if (howMany.HasValue)
+            {
+                dataGroupInDb = await _uow.DataGroup.GetByIdWithUserDataAsync(groupId, howMany.Value, GetUserId());
+            }
+            else
+            {
+                dataGroupInDb = await _uow.DataGroup.GetByIdWithUserDataAsync(groupId, GetUserId());
+            }
+
+            if (dataGroupInDb == null)
+                return NotFound("Nie znaleziono grupy o takim id.");
+
+            return Ok(_mapper.Map<DataGroupDto>(dataGroupInDb));
         }
 
         private int GetUserId()
