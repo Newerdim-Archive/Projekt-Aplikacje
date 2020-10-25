@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         title: 'Oczekiwanie na odpowiedź od serwera...',
         willOpen: () => {
           Swal.showLoading();
-        },
+        }
       });
       this.authService
         .login(this.username.value, this.password.value)
@@ -56,9 +56,8 @@ export class LoginComponent implements OnInit {
               text: 'Za chwilę zostaniesz przekierowany na stronę główną.',
               timer: 2000,
               timerProgressBar: true,
-              onClose: () => {
-                this.router.navigate(['/']);
-              },
+            }).then(() => {
+              this.router.navigate(['/']);
             });
           },
           (error: HttpErrorResponse) => {

@@ -21,9 +21,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {}
+    private authService: AuthService  ) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -40,12 +38,12 @@ export class RegisterComponent implements OnInit {
         timerProgressBar: true,
         willOpen: () => {
           Swal.showLoading();
-        }
+        },
       });
       this.authService
         .register(this.username.value, this.email.value, this.password.value)
         .subscribe(
-          (result) => {
+          () => {
             // this.router.navigate(['/login']);
             Swal.close();
             Swal.fire({
