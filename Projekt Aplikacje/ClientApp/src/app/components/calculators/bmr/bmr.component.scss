@@ -1,0 +1,39 @@
+@import "../../../../assets/scss/required";
+
+:host {
+    width: 100%;
+}
+
+.bmr {
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: space(5);
+
+    @include margin-x(auto);
+    @include flex(c, s, c);
+
+    h1 {
+        text-align: center;
+        @include underline(color(primary));
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .gender {
+        @include flex(c, s, r);
+        .title {
+            font-weight: bold;
+        }
+        .radio-container {
+            @include margin-x(3);
+        }
+    }
+
+    .result {
+        width: 100%;
+        margin-top: space(3);
+        text-align: center;
+    }
+}

@@ -1,0 +1,31 @@
+@import "../../../../assets/scss/required";
+
+:host {
+    width: 100%;
+}
+
+.bmi {
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: space(5);
+
+    @include margin-x(auto);
+    @include flex(c, s, c);
+
+    h1 {
+        text-align: center;
+        @include underline(color(primary));
+
+        &:first-line {
+            @include underline(color(primary));
+        }
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .result {
+        margin-top: space(3);
+    }
+}

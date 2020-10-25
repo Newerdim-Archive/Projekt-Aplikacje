@@ -1,0 +1,84 @@
+<div class="bmr">
+    <h1>Zapotrzebowanie kaloryczne</h1>
+    <form [formGroup]="bmrForm">
+      <div class="gender">
+        <span class="title">Płeć: </span>
+        <label class="radio-container">
+          <input type="radio" [checked]="true" value="m" formControlName="gender" />
+          <div class="radiomark">
+            <div class="mark"></div>
+          </div>
+          Mężczyzna
+        </label>
+        <label class="radio-container">
+          <input type="radio" value="w" formControlName="gender" />
+          <div class="radiomark">
+            <div class="mark"></div>
+          </div>
+          Kobieta
+        </label>
+      </div>
+  
+      <div class="form-group-minimal">
+        <input
+          class="form-control"
+          id="bmr-age"
+          type="number"
+          min="1"
+          max="999"
+          formControlName="age"
+        />
+        <label for="bmr-age">Wiek (lata)</label>
+      </div>
+  
+      <div class="form-group-minimal">
+        <input
+          class="form-control"
+          id="bmr-weight"
+          type="number"
+          min="1"
+          max="999"
+          formControlName="weight"
+        />
+        <label for="bmr-weight">Waga (kg)</label>
+      </div>
+  
+      <div class="form-group-minimal">
+        <input
+          class="form-control"
+          id="bmr-height"
+          type="number"
+          min="1"
+          max="999"
+          formControlName="height"
+        />
+        <label for="bmr-height">Wzrost (cm)</label>
+      </div>
+  
+      <div class="form-group-minimal">
+        <select class="form-control active" formControlName="activity">
+          <option value="" selected disabled hidden>Wybierz aktywność</option>
+          <option value="1.2">Brak aktywności</option>
+          <option value="1.3">Niska aktywność (mniej niż 20 minut)</option>
+          <option value="1.5">Umiarkowana aktywność (20-40 minut)</option>
+          <option value="1.75">Aktywny tryb życia (40-60 minut dziennie)</option>
+          <option value="2">
+            Bardzo aktywny tryb życia (więcej niż 60 minut dziennie)
+          </option>
+        </select>
+        <label for="groupId">Aktywność</label>
+      </div>
+  
+      <button class="btn btn-primary" (click)="onSubmit()" [disabled]="!bmrForm.valid" type="submrt">
+        Wylicz
+      </button>
+    </form>
+  
+    <div class="result" *ngIf="result">
+        Twoje zapotrzebowanie to <b>{{result}} kcal</b> <br>
+        <b>15% białka:</b> {{protein}} kcal = {{proteinG}}g <br>
+        <b>55% węglowodanów:</b> {{carbo}} kcal = {{carboG}}g <br>
+        <b>30% tłuszczu:</b> {{fat}} kcal = {{fatG}}g <br>
+    </div>
+  </div>
+  
