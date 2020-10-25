@@ -1,8 +1,10 @@
+import { UpdateDataModel } from './../models/updateDataModel';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DataModel } from '../models/dataModel';
+import { DataFormModel } from '../models/dataFormModel';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +13,13 @@ export class DataService {
   private refresh: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     null
   );
-  private openModal: BehaviorSubject<DataModel> = new BehaviorSubject<
-    DataModel
-  >(null);
-  private updateDataList: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private showModal: BehaviorSubject<DataFormModel> = new BehaviorSubject<
+    DataFormModel
+  >(undefined);
+  private updateDataList: BehaviorSubject<
+    UpdateDataModel
+  > = new BehaviorSubject<UpdateDataModel>(null);
+  private closeModal: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
 
   constructor(private http: HttpClient) {}
 
@@ -27,18 +32,18 @@ export class DataService {
   }
 
   add(data: DataModel): Observable<DataModel> {
-    return this.http.post<DataModel>(environment.apiUrl + 'data', data);
+    return this.http.post<DataModel>(environment.apiUrl + '/data', data);
   }
 
   update(dataId: number, data: DataModel): Observable<DataModel> {
     return this.http.put<DataModel>(
-      environment.apiUrl + `data/${dataId}`,
+      environment.apiUrl + `/data/${dataId}`,
       data
     );
   }
 
   delete(dataId: number): Observable<any> {
-    return this.http.delete<any>(environment.apiUrl + `data/${dataId}`);
+    return this.http.delete<any>(environment.apiUrl + `/data/${dataId}`);
   }
 
   refreshDataListener(): Observable<boolean> {
@@ -53,21 +58,23 @@ export class DataService {
     return this.updateDataList.asObservable();
   }
 
-  updateList(data: DataModel, method: DataMethod): void {
-    this.updateDataList.next({data, method});
+  updateList(updateData: UpdateDataModel): void {
+    this.updateDataList.next(updateData);
   }
 
-  openFormModal(data: DataModel): void {
-    this.openModal.next(data);
+  showFormModal(dataFormModel: DataFormModel): void {
+    this.showModal.next(dataFormModel);
   }
 
-  openModalListener(): Observable<DataModel> {
-    return this.openModal.asObservable();
+  showModalListener(): Observable<DataFormModel> {
+    return this.showModal.asObservable();
   }
-}
 
-export enum DataMethod {
-  Add,
-  Update,
-  Delete,
+  closeFormModal(): void {
+    this.closeModal.next(true);
+  }
+
+  closeModalListener(): Observable<boolean> {
+    return this.closeModal.asObservable();
+  }
 }
