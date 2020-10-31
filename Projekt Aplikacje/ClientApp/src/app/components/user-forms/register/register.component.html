@@ -40,7 +40,7 @@
       </span>
       <span
         class="validation-error"
-        *ngIf="(email.hasError('email') || email.hasError('pattern')) && email.touched"
+        *ngIf="email.hasError('pattern') && email.touched"
       >
         Email nie jest prawidłowy. Np. przyklad123@gmail.com.
       </span>

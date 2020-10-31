@@ -30,20 +30,15 @@ export class RegisterComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.email,
-          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+          Validators.pattern(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/),
         ],
       ],
       password: [
         '',
         Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]$'),
+        Validators.pattern(/^(?=.*[A-Za-z])(?=.*d)[A-Za-zd@$!%*#?&]+$/),
       ],
     });
-  }
-
-  clg(message) {
-    console.log(message);
   }
 
   onSubmit(): void {
