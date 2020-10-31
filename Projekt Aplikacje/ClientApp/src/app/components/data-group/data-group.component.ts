@@ -96,6 +96,8 @@ export class DataGroupComponent implements OnInit {
   }
 
   generateChart(type: string): void {
+    this.chart?.destroy();
+
     const labels = this.datas
       .filter((d, index) => index < 7)
       .map((d) => new DatePipe('pl-PL').transform(d.date, 'dd MMM yyyy'));
@@ -110,7 +112,7 @@ export class DataGroupComponent implements OnInit {
           {
             data,
             backgroundColor: 'rgba(64, 115, 255, 0.2)',
-            borderColor: 'rgb(64, 115, 255)'
+            borderColor: 'rgb(64, 115, 255)',
           },
         ],
       },
@@ -131,7 +133,7 @@ export class DataGroupComponent implements OnInit {
           text: 'Podsumowanie tygodnia.',
           fontSize: 20,
           padding: 20,
-          fontColor: '#333'
+          fontColor: '#333',
         },
         legend: {
           display: false,
