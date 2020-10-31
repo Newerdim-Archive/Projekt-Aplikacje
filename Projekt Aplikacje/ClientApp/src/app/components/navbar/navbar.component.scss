@@ -50,19 +50,20 @@
     font-weight: bold;
     margin-right: space(3);
   }
-
+  
   .navbar-collapse {
     position: fixed;
     top: 50px;
     left: -100%;
     height: 100%;
     max-height: calc(100vh - 50px);
-    overflow-y: auto;
     transition: left $transition-duration;
 
+    @include flex();
+    
     &.active {
       left: 0;
-
+      
       .curtain {
         display: block;
         @include for-desktop-up {
@@ -70,12 +71,12 @@
         }
       }
     }
-
+    
     @include for-desktop-up {
       position: static;
       height: auto;
     }
-
+    
     .curtain {
       position: fixed;
       top: 50px;
@@ -87,11 +88,12 @@
       z-index: -1;
       display: none;
     }
-
+    
     .nav-container {
       background-color: color(light);
       height: 100%;
       min-width: 200px;
+      overflow-y: auto;
 
       @include flex-center();
       @include padding-yx(2, 4);
@@ -105,8 +107,9 @@
         list-style-type: none;
         margin: 0;
         padding: 0;
-        height: 100%;
+        height: fit-content;
 
+        @include margin-yx(auto, 0);
         @include flex(s, c, c);
 
         @include for-desktop-up {
@@ -152,7 +155,6 @@
 
     ul.nav {
       list-style-type: none;
-      margin: 0;
       padding: 0;
 
       li {
