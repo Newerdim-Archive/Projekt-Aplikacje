@@ -1,8 +1,6 @@
 <div class="register-form">
   <h1>Załóż konto już teraz</h1>
-  <div class="error-message" *ngIf="errorMessage">
-    {{ errorMessage }}<br />
-  </div>
+  <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}<br /></div>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group-minimal">
       <input
@@ -16,14 +14,21 @@
         class="validation-error"
         *ngIf="username.hasError('required') && username.touched"
       >
-        Nazwa użytkownika jest wymagana
+        Nazwa użytkownika jest wymagana.
+      </span>
+      <span
+        class="validation-error"
+        *ngIf="username.hasError('minlength') && username.touched"
+      >
+        Nazwa użytkownika musi mieć co najmniej
+        {{ username.errors.minlength.requiredLength }} znaków.
       </span>
     </div>
     <div class="form-group-minimal">
       <input
         class="form-control"
         id="register-email"
-        type="text"
+        type="email"
         formControlName="email"
       />
       <label for="register-email">Email</label>
@@ -31,7 +36,13 @@
         class="validation-error"
         *ngIf="email.hasError('required') && email.touched"
       >
-        Email jest wymagany
+        Email jest wymagany.
+      </span>
+      <span
+        class="validation-error"
+        *ngIf="(email.hasError('email') || email.hasError('pattern')) && email.touched"
+      >
+        Email nie jest prawidłowy. Np. przyklad123@gmail.com.
       </span>
     </div>
     <div class="form-group-minimal">
@@ -52,7 +63,13 @@
         class="validation-error"
         *ngIf="password.hasError('minlength') && password.touched"
       >
-        Hasło musi mieć przynajmniej 6 znaków
+        Hasło musi mieć przynajmniej 6 znaków.
+      </span>
+      <span
+        class="validation-error"
+        *ngIf="password.hasError('pattern') && password.touched"
+      >
+        Hasło musi mieć przynajmniej jedną małą literę, jedną wielką literę oraz liczbę.
       </span>
     </div>
     <button
