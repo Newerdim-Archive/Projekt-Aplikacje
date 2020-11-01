@@ -7,9 +7,9 @@ import { DataModel } from 'src/app/models/dataModel';
 import Swal from 'sweetalert2';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DataMethod, UpdateDataModel } from 'src/app/models/updateDataModel';
+import * as moment from 'moment';
+import 'moment/locale/nl';
 import { Chart } from 'chart.js';
-// import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-data-group',
@@ -78,7 +78,7 @@ export class DataGroupComponent implements OnInit {
             );
             if (dataInList?.length) {
               this.datas = this.datas.map((d) =>
-              d.id === result.data.id ? result.data : d
+                d.id === result.data.id ? result.data : d
               );
             } else {
               // If not add this data
@@ -101,11 +101,14 @@ export class DataGroupComponent implements OnInit {
 
     const labels = reversedData
       .filter((d, index) => index < this.howManyDataInChart)
-      .map((d) => new DatePipe('pl-PL').transform(d.date, 'dd MMM yyyy'));
+      .map((d) => new Date(d.date));
 
     const data = reversedData
       .filter((d, index) => index < this.howManyDataInChart)
       .map((d) => d.value);
+
+    // Translate months into polish
+    moment.locale('pl');
 
     this.chart = new Chart('myChart', {
       type: this.dataGroup.chartType,
@@ -121,7 +124,25 @@ export class DataGroupComponent implements OnInit {
       },
       options: {
         maintainAspectRatio: false,
+        // straight lines instead of curves and remove fill
+        elements: {
+          line: {
+            tension: 0,
+            fill: false
+          },
+        },
         scales: {
+          xAxes: [
+            {
+              type: 'time',
+              time: {
+                unit: 'day',
+                displayFormats: { day: 'D MMM' },
+                tooltipFormat: 'DD MMMM YYYY',
+                // min: this.addDaysToDate(new Date(), -7).toString(),
+              },
+            },
+          ],
           yAxes: [
             {
               ticks: {
@@ -167,6 +188,12 @@ export class DataGroupComponent implements OnInit {
       data: null,
       dataGroupId: this.dataGroup.id,
     });
+  }
+
+  addDaysToDate(date: Date | string, days: number): Date {
+    const newDate = new Date(date);
+    newDate.setDate(newDate.getDate() + days);
+    return newDate;
   }
 
   get datas(): DataModel[] {
