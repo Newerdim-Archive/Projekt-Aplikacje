@@ -154,7 +154,7 @@ export class DataGroupComponent implements OnInit {
         hover: { mode: null },
         title: {
           display: true,
-          text: 'Podsumowanie tygodnia.',
+          text: 'Podsumowanie ostatnich danych.',
           fontSize: 20,
           padding: 20,
           fontColor: '#333',
