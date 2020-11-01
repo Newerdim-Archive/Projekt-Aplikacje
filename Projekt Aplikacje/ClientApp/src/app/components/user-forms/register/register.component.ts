@@ -31,13 +31,16 @@ export class RegisterComponent implements OnInit {
         [
           Validators.required,
           Validators.pattern(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/),
-        ],
+        ]
       ],
       password: [
         '',
-        Validators.required,
-        Validators.pattern(/^(?=.*[A-Za-z])(?=.*d)[A-Za-zd@$!%*#?&]+$/),
-      ],
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]+$/),
+        ],
+      ]
     });
   }
 
