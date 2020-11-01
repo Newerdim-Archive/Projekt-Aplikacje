@@ -13,5 +13,7 @@ namespace Projekt_Aplikacje.Models
         public string Name { get; set; }
 
         public string Unit { get; set; }
+
+        public string ChartType { get; set; }
     }
 }

@@ -14,6 +14,8 @@ namespace Projekt_Aplikacje.Models
 
         public string Unit { get; set; }
 
+        public string ChartType { get; set; } = "bar";
+
         public ICollection<DataModel> Datas { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace Projekt_Aplikacje.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DataGroup>().HasData(
-                    new DataGroup { Id = 1, Name = "Waga", Unit = "kg", Datas = new List<DataModel>() },
+                    new DataGroup { Id = 1, Name = "Waga", Unit = "kg", Datas = new List<DataModel>(), ChartType = "line" },
                     new DataGroup { Id = 2, Name = "Kalorie", Unit = "kcal", Datas = new List<DataModel>() },
                     new DataGroup { Id = 3, Name = "Sen", Unit = "h", Datas = new List<DataModel>() },
                     new DataGroup { Id = 4, Name = "Woda", Unit = "ml", Datas = new List<DataModel>() },

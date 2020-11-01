@@ -34,6 +34,7 @@ namespace Projekt_Aplikacje.Data
                     Id = g.Id,
                     Name = g.Name,
                     Unit = g.Unit,
+                    ChartType = g.ChartType,
                     Datas = g.Datas
                         .Where(d => d.UserId == userId)
                         .ToList()
@@ -51,6 +52,7 @@ namespace Projekt_Aplikacje.Data
                     Id = g.Id,
                     Name = g.Name,
                     Unit = g.Unit,
+                    ChartType = g.ChartType,
                     Datas = g.Datas
                         .Where(d => d.UserId == userId)
                         .Take(howMany)
@@ -69,6 +71,7 @@ namespace Projekt_Aplikacje.Data
                     Id = g.Id,
                     Name = g.Name,
                     Unit = g.Unit,
+                    ChartType = g.ChartType,
                     Datas = g.Datas
                         .Where(d => d.UserId == userId)
                         .OrderBy(d => d.Date)
@@ -87,6 +90,7 @@ namespace Projekt_Aplikacje.Data
                     Id = g.Id,
                     Name = g.Name,
                     Unit = g.Unit,
+                    ChartType = g.ChartType,
                     Datas = g.Datas
                         .Where(d => d.UserId == userId)
                         .Take(howMany)

@@ -49,12 +49,7 @@ export class DataGroupComponent implements OnInit {
             this.dataGroup = result;
 
             this.sortAndFilterList();
-
-            if (this.dataGroup.name === 'Waga') {
-              this.generateChart('line');
-            } else {
-              this.generateChart('bar');
-            }
+            this.generateChart();
           },
           (error: HttpErrorResponse) => {
             Swal.close();
@@ -94,16 +89,12 @@ export class DataGroupComponent implements OnInit {
           }
 
           this.sortAndFilterList();
-          if (this.dataGroup.name === 'Waga') {
-            this.generateChart('line');
-          } else {
-            this.generateChart('bar');
-          }
+          this.generateChart();
         }
       });
   }
 
-  generateChart(type: string): void {
+  generateChart(): void {
     this.chart?.destroy();
 
     const reversedData = this.getReverseSortedAndFilteredList();
@@ -117,7 +108,7 @@ export class DataGroupComponent implements OnInit {
       .map((d) => d.value);
 
     this.chart = new Chart('myChart', {
-      type,
+      type: this.dataGroup.chartType,
       data: {
         labels,
         datasets: [
