@@ -98,11 +98,15 @@ export class DataGroupComponent implements OnInit {
   generateChart(type: string): void {
     this.chart?.destroy();
 
-    const labels = this.datas
+    const reversedData = this.getReverseSortedAndFilteredList();
+
+    const labels = reversedData
       .filter((d, index) => index < 7)
       .map((d) => new DatePipe('pl-PL').transform(d.date, 'dd MMM yyyy'));
 
-    const data = this.datas.filter((d, index) => index < 7).map((d) => d.value);
+    const data = reversedData
+      .filter((d, index) => index < 7)
+      .map((d) => d.value);
 
     this.chart = new Chart('myChart', {
       type,
@@ -148,6 +152,14 @@ export class DataGroupComponent implements OnInit {
       ?.filter((d) => d.dataGroupId === this.dataGroup.id)
       ?.sort((a: DataModel, b: DataModel) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
+  }
+
+  getReverseSortedAndFilteredList(): DataModel[] {
+    return this.datas
+      ?.filter((d) => d.dataGroupId === this.dataGroup.id)
+      ?.sort((a: DataModel, b: DataModel) => {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
       });
   }
 
