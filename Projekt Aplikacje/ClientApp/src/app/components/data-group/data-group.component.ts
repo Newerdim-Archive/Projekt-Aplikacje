@@ -75,12 +75,19 @@ export class DataGroupComponent implements OnInit {
       .updateListListener()
       .subscribe((result: UpdateDataModel) => {
         if (result) {
-          if (result.method === DataMethod.Add) {
-            this.datas.push(result.data);
-          } else if (result.method === DataMethod.Update) {
-            this.datas = this.datas.map((d) =>
-              d.id === result.data.id ? result.data : d
+          if (result.method === DataMethod.Update) {
+            // Check if data exists
+            const dataInList = this.datas.filter(
+              (d) => d.id === result.data.id
             );
+            if (dataInList?.length) {
+              this.datas = this.datas.map((d) =>
+              d.id === result.data.id ? result.data : d
+              );
+            } else {
+              // If not add this data
+              this.datas.push(result.data);
+            }
           } else if (result.method === DataMethod.Delete) {
             this.datas = this.datas.filter((d) => d.id !== result.data.id);
           }

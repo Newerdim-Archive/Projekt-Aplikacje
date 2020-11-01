@@ -6,7 +6,6 @@ export interface UpdateDataModel {
 }
 
 export enum DataMethod {
-  Add,
   Update,
   Delete,
 }

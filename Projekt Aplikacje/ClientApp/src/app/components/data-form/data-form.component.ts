@@ -104,7 +104,7 @@ export class DataFormComponent implements OnInit {
 
       if (!this.id?.value) {
         this.dataService.add(dataModel).subscribe((result: DataModel) => {
-          this.dataService.updateList({ data: result, method: DataMethod.Add });
+          this.dataService.updateList({ data: result, method: DataMethod.Update });
         });
       } else {
         this.dataService
