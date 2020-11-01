@@ -3,7 +3,7 @@
 .calculator-container {
     width: 100%;
     max-width: 1200px;
-    height: 100%;
+    height: calc(100vh - 50px);
     
     @include margin-x(auto);
     @include padding-yx(0, 4);
