@@ -26,6 +26,14 @@ namespace Projekt_Aplikacje.Data
                 .ToListAsync();
         }
 
+        public async Task<DataModel> GetByDateWithGroupFromUser(DateTime date, int dataGroupId, int userId)
+        {
+            return await _context.Datas
+                .Where(d => d.UserId == userId)
+                .Where(d => d.DataGroupId == dataGroupId)
+                .FirstOrDefaultAsync(d => d.Date == date);
+        }
+
         public async Task<DataModel> GetByIdFromUser(int id, int userId)
         {
             return await _context.Datas

@@ -11,5 +11,6 @@ namespace Projekt_Aplikacje.Data.Interfaces
     {
         Task<DataModel> GetByIdFromUser(int id, int userId);
         Task<ICollection<DataModel>> GetAllFromUser(int userId);
+        Task<DataModel> GetByDateWithGroupFromUser(DateTime date, int dataGroupId, int userId);
     }
 }

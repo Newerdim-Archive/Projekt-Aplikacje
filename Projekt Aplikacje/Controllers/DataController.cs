@@ -53,7 +53,15 @@ namespace Projekt_Aplikacje.Controllers
             var dataForAdd = _mapper.Map<DataModel>(dataForAddDto);
             dataForAdd.UserId = GetUserId();
 
-            // TODO: Autoincrement datas with same date
+
+            var dataInDb = await _uow.Data.GetByDateWithGroupFromUser(dataForAdd.Date, dataForAdd.DataGroupId, GetUserId());
+
+            if (dataInDb != null) 
+            {
+                // Update value if data with same date exists
+                dataInDb.Value += dataForAdd.Value;
+                return await Update(dataInDb.Id, _mapper.Map<DataForUpdateDto>(dataInDb));
+            }
 
             await _uow.Data.AddAsync(dataForAdd);
             await _uow.SaveAsync();
