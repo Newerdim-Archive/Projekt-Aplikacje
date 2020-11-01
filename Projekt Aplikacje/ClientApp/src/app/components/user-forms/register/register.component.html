@@ -42,7 +42,7 @@
         class="validation-error"
         *ngIf="email.hasError('pattern') && email.touched"
       >
-        Email nie jest prawidłowy. Np. przyklad123@gmail.com.
+        Email nie jest prawidłowy. <br>
       </span>
     </div>
     <div class="form-group-minimal">
@@ -63,7 +63,7 @@
         class="validation-error"
         *ngIf="password.hasError('minlength') && password.touched"
       >
-        Hasło musi mieć przynajmniej 6 znaków.
+        Hasło musi mieć przynajmniej {{ password.errors.minlength.requiredLength }} znaków.
       </span>
       <span
         class="validation-error"

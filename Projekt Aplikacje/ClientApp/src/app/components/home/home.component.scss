@@ -3,7 +3,7 @@
 .home-container {
   width: 100%;
   min-height: 350px;
-  height: calc(100% - 50px);
+  min-height: calc(100vh - 50px);
 
   @include flex(c, s, c);
 

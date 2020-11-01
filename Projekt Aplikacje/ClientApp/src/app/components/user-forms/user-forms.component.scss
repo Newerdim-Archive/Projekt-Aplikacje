@@ -2,12 +2,11 @@
 
 .user-forms {
   width: 100%;
-  min-height: 350px;
-  height: calc(100% - 50px);
+  min-height: calc(100vh - 50px);
   max-width: 1000px;
 
   @include padding-yx(4, 0);
-  @include margin-yx(0, auto);
+  @include margin-all(auto);
   @include flex(c, s, c);
 
   @include for-tablet-up() {
