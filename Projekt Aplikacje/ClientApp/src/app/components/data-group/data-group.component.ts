@@ -20,6 +20,7 @@ export class DataGroupComponent implements OnInit {
   dataGroup: DataGroup;
   dataGroupName: string;
   chart: any;
+  howManyDataInChart = 60;
   // Method: DataMethod;
 
   constructor(
@@ -108,11 +109,11 @@ export class DataGroupComponent implements OnInit {
     const reversedData = this.getReverseSortedAndFilteredList();
 
     const labels = reversedData
-      .filter((d, index) => index < 7)
+      .filter((d, index) => index < this.howManyDataInChart)
       .map((d) => new DatePipe('pl-PL').transform(d.date, 'dd MMM yyyy'));
 
     const data = reversedData
-      .filter((d, index) => index < 7)
+      .filter((d, index) => index < this.howManyDataInChart)
       .map((d) => d.value);
 
     this.chart = new Chart('myChart', {
