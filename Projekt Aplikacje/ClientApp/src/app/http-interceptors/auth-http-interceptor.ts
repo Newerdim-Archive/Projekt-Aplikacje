@@ -39,11 +39,12 @@ export class AuthHttpInterceptor implements HttpInterceptor {
       return next.handle(this.updateHeader(req)).pipe(
         catchError((error: HttpErrorResponse) => {
           this.error = true;
-          if (error.status === 401 || error.status === 400) {
+          if (error.status === 401 || error.status === 400 || error.status === 404) {
             this.authSerivce.logOut();
+          } else {
+            this.router.navigate(['/error']);
+            return throwError(error);
           }
-          this.router.navigate(['/error']);
-          return throwError(error);
         }),
         finalize(() => {
           if (!this.error) {
@@ -76,6 +77,4 @@ export class AuthHttpInterceptor implements HttpInterceptor {
 
     return req;
   }
-
-  retryFailedRequests(): void {}
 }
