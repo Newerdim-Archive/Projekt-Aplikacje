@@ -1,0 +1,18 @@
+{
+  "AppSettings": {
+    "AccessTokenSecret": "Secret",
+    "RefreshTokenSecret": "Secret2",
+    "ForgotPasswordTokenSecret": "Secret3"
+  },
+  "ConnectionStrings": {
+    "Default": "Server=mysql-db;Username=root;Password=Password;Database=HealthTracker;"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*"
+}
